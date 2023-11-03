@@ -7,18 +7,18 @@ import { createRouter, createWebHistory } from "vue-router";
 
 // definiamo le rotte
 const routes = [
-    {
-        path: "/", // uri da scrivere nel browser
-        name: "home", // nome della rotta da usare per creare un link
-        component: HomePage // componente che ritorna l'html della pagina
-    },
-    // ... altre rotte
-    {
-        // Show di un singolo post
-        path: "/posts/:id",
-        name: "posts.show",
-        component: PostsShowPage
-    }
+    // {
+    //     path: "/", // uri da scrivere nel browser
+    //     name: "home", // nome della rotta da usare per creare un link
+    //     component: HomePage // componente che ritorna l'html della pagina
+    // },
+    // // ... altre rotte
+    // {
+    //     // Show di un singolo post
+    //     path: "/posts/:id",
+    //     name: "posts.show",
+    //     component: PostsShowPage
+    // }
 ]
 
 // creazione istanza di Router
