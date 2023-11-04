@@ -17,8 +17,20 @@ export default {
                     route: "chi-siamo",
                 }
             ],
+            search: {
+                type: '',
+            }
         }
     },
+    methods: {
+        filterRestaurants() {
+            axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.search.type }).then((response) => {
+                this.restaurants = response.data.results;
+                console.log(response.data.results)
+            })
+
+        }
+    }
 }
 </script>
 <template>
@@ -39,8 +51,11 @@ export default {
                                     :to="{ name: link.route }">{{ link.title }}</router-link>
                             </li>
                         </ul>
+
+                        <!-- SearchBar -->
                         <form role="search">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search"
+                                v-model="search.type">
                         </form>
                     </div>
                 </div>
@@ -54,10 +69,11 @@ export default {
 @use "../src/styles/partials/variable" as *;
 
 header {
-    .container{
+    .container {
         z-index: 10;
         top: 20px;
     }
+
     .navbar {
         background-color: $secondary-color;
     }
