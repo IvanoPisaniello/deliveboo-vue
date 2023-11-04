@@ -1,18 +1,19 @@
 <script>
 import TheFooter from './components/TheFooter.vue';
-import TheHeader from './components/TheHeader.vue';
+import HeroSection from './components/HeroSection.vue';
 
 export default {
   components: {
     TheFooter,
-    TheHeader,
+    HeroSection,
   }
 }
 
 </script>
 
 <template>
-  <TheHeader></TheHeader>
+  <HeroSection></HeroSection>
+  
   <main>
     <router-view></router-view>
   </main>
@@ -20,4 +21,5 @@ export default {
   <TheFooter></TheFooter>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+</style>
