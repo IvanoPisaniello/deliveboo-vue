@@ -1,5 +1,7 @@
 <script>
 
+import axios from "axios";
+
 export default {
     data() {
         return {
@@ -17,6 +19,7 @@ export default {
                     route: "chi-siamo",
                 }
             ],
+            restaurants: [],
             search: {
                 type: '',
             }
@@ -24,11 +27,11 @@ export default {
     },
     methods: {
         filterRestaurants() {
-            axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.search.type }).then((response) => {
-                this.restaurants = response.data.results;
-                console.log(response.data.results)
-            })
-
+            axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.search })
+                .then((response) => {
+                    this.restaurants = response.data.results;
+                    console.log(this.restaurants.results)
+                })
         }
     }
 }
@@ -53,9 +56,10 @@ export default {
                         </ul>
 
                         <!-- SearchBar -->
-                        <form role="search">
+                        <form @keydown.enter.prevent="filterRestaurants()" class="m-3" style="width: 200px;">
                             <input class="form-control" type="search" placeholder="Search" aria-label="Search"
                                 v-model="search.type">
+                            <!-- <button class="btn btn-primary" type="submit">Search</button> -->
                         </form>
                     </div>
                 </div>
