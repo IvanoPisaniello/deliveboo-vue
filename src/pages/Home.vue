@@ -39,8 +39,8 @@ export default {
     <!-- SearchBar -->
     <form @keydown.enter.prevent="filterRestaurants()" class="m-3" style="width: 200px;">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" v-model="search.type">
-        <!-- <button class="btn btn-primary" type="submit">Search</button> -->
     </form>
+    
     <div class="card text-start" v-for="restaurant in restaurants">
         <img class="card-img-top" src="holder.js/100px180/" alt="Title">
         <div class="card-body">

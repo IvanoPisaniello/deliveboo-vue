@@ -18,21 +18,10 @@ export default {
                     title: "Chi Siamo",
                     route: "chi-siamo",
                 }
-            ],
-            restaurants: [],
-            search: {
-                type: '',
-            }
+            ]
         }
     },
     methods: {
-        filterRestaurants() {
-            axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.search })
-                .then((response) => {
-                    this.restaurants = response.data.results;
-                    console.log(this.restaurants.results)
-                })
-        }
     }
 }
 </script>
@@ -54,13 +43,6 @@ export default {
                                     :to="{ name: link.route }">{{ link.title }}</router-link>
                             </li>
                         </ul>
-
-                        <!-- SearchBar -->
-                        <form @keydown.enter.prevent="filterRestaurants()" class="m-3" style="width: 200px;">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                                v-model="search.type">
-                            <!-- <button class="btn btn-primary" type="submit">Search</button> -->
-                        </form>
                     </div>
                 </div>
             </nav>
