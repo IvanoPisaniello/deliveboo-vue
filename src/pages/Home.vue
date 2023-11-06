@@ -34,7 +34,7 @@ export default {
 
 
 <template>
-    <div class="container-md">
+    <div class="container-md my-4">
         <div class="row">
             <Card v-for="restaurant in restaurants"
             :singleCard="restaurant"></Card>
