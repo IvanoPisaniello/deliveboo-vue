@@ -25,7 +25,7 @@ export default {
         fetchRestaurants() {
             axios.get('http://127.0.0.1:8000/api/restaurants').then((response) => {
                 this.restaurants = response.data.results;
-                console.log(response.data.results)
+                //console.log(response.data.results)
             })
 
         },
@@ -33,7 +33,7 @@ export default {
             axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.search })
                 .then((response) => {
                     this.restaurants = response.data.results;
-                    console.log(this.restaurants)
+                    //console.log(this.restaurants)
                 })
         }
     },
