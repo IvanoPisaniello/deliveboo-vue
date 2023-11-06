@@ -48,5 +48,7 @@ export default {
 
 <style lang="scss" scoped>
 @use "../src/styles/partials/variable" as *;
-
+.carousel-indicators [data-bs-target] {
+    background-color: $primary-color;
+}
 </style>
