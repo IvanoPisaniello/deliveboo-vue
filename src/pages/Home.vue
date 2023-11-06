@@ -1,6 +1,14 @@
 <script>
+
+
 import axios from "axios";
+
+import Card from '../components/Card.vue';
+
 export default {
+    components: {
+        Card,
+    },
     data() {
         return {
             restaurants: [],
@@ -26,18 +34,14 @@ export default {
 
 
 <template>
-    <div class="card text-start" v-for="restaurant in restaurants">
-        <img class="card-img-top" src="holder.js/100px180/" alt="Title">
-        <div class="card-body">
-            <h4 class="card-title">{{ restaurant.name }}</h4>
-
-            <p class="card-text">Body</p>
+    <div class="container-md">
+        <div class="row">
+            <Card v-for="restaurant in restaurants"
+            :singleCard="restaurant"></Card>
         </div>
     </div>
 </template>
 
 <style lang="scss" scoped>
-.title {
-    margin-top: 200px;
-}
+
 </style>
