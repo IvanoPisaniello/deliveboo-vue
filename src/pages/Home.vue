@@ -4,10 +4,12 @@
 import axios from "axios";
 
 import Card from '../components/Card.vue';
+import HeroSection from "../components/HeroSection.vue";
 
 export default {
     components: {
         Card,
+        HeroSection,
     },
     data() {
         return {
@@ -44,6 +46,7 @@ export default {
 
 
 <template>
+    <HeroSection></HeroSection>
     <!-- SearchBar -->
     <form @keydown.enter.prevent="filterRestaurants()" class="m-3" style="width: 200px;">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" v-model="search.type">
