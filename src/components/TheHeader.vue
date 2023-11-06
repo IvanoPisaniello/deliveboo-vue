@@ -1,5 +1,7 @@
 <script>
 
+import axios from "axios";
+
 export default {
     data() {
         return {
@@ -16,20 +18,10 @@ export default {
                     title: "Chi Siamo",
                     route: "chi-siamo",
                 }
-            ],
-            search: {
-                type: '',
-            }
+            ]
         }
     },
     methods: {
-        filterRestaurants() {
-            axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.search.type }).then((response) => {
-                this.restaurants = response.data.results;
-                console.log(response.data.results)
-            })
-
-        }
     }
 }
 </script>
@@ -51,12 +43,6 @@ export default {
                                     :to="{ name: link.route }">{{ link.title }}</router-link>
                             </li>
                         </ul>
-
-                        <!-- SearchBar -->
-                        <form role="search">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                                v-model="search.type">
-                        </form>
                     </div>
                 </div>
             </nav>
