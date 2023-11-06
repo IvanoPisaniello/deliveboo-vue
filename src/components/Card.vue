@@ -17,7 +17,9 @@ export default {
             <div class="card-body">
                 <h5 class="card-title"> {{ singleCard.name }} </h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary"> {{ singleCard.address }} </h6>
-                <p class="card-text"></p>
+                <div class="card-text">
+                    <p v-for="type in singleCard.types">{{ type.name }}</p>
+                </div>
                 <a href="#" class="card-link">Card link</a>
                 <a href="#" class="card-link">Another link</a>
             </div>
