@@ -13,15 +13,15 @@ export default {
 <template>
     <div class="col-2">
         <div class="card h-100">
-            <img src="..." class="card-img-top" alt="...">
+            <!-- <img src="..." class="card-img-top" alt="..."> -->
             <div class="card-body">
                 <h5 class="card-title"> {{ singleCard.name }} </h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary"> {{ singleCard.address }} </h6>
                 <div class="card-text">
-                    <p v-for="type in singleCard.types">{{ type.name }}</p>
+                    <div v-for="type in singleCard.types"> {{ type.name }} </div>
                 </div>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+                <router-link :to="{ name: 'restaurant.show', params: { slug: singleCard.slug } }" 
+                class="card-link">Dettagli ristorante</router-link>
             </div>
         </div>
     </div>
