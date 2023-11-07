@@ -7,7 +7,7 @@ export default {
 
 
 <template>
-    <h1 class="title">funziona pure chi siamo? e daje</h1>
+    <h1 class="title">Chi siamo</h1>
 </template>
 
 <style lang="scss" scoped>
