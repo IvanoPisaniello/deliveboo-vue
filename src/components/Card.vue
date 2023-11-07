@@ -11,7 +11,7 @@ export default {
 </script>
 
 <template>
-    <div class="col-2">
+    <div class="col-sm-6 col-md-4 col-lg-2">
         <div class="card h-100">
             <!-- <img src="..." class="card-img-top" alt="..."> -->
             <div class="card-body">

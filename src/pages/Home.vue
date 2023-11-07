@@ -52,7 +52,7 @@ export default {
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" v-model="search.type">
     </form>
     
-    <div class="container-md my-4">
+    <div class="container my-4">
         <div class="row">
             <Card v-for="restaurant in restaurants"
             :singleCard="restaurant"></Card>
