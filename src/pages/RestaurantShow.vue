@@ -14,6 +14,9 @@ export default {
                     this.restaurant = response.data;
                     console.log(this.restaurant);
                 })
+        },
+        getImagePath(image) {
+            return `http://127.0.0.1:8000/storage/${image}`;
         }
     },
     mounted() {
@@ -37,11 +40,15 @@ export default {
         <div class="row">
             <div v-for="dish in restaurant.dishes" class="col-4">
                 <div class="card h-100">
+                    <img :src="getImagePath(dish.image)" class="card-img-top" 
+                    alt="img_dish" style="height: 190px;object-fit: cover;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title"> {{ dish.title }} </h5>
-                        <span v-if="dish.discount != 0" 
-                        class="badge rounded-pill text-bg-success"> {{ dish.discount }}
-                        </span>
+                        <div>
+                           <span v-if="dish.discount != 0" 
+                        class="badge rounded-pill text-bg-success"> -{{ dish.discount }}%
+                        </span> 
+                        </div>
                         <p class="card-text">
                             {{ dish.description }}
                         </p>
