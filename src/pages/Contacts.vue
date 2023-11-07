@@ -6,7 +6,7 @@ export default {
 </script>
 
 <template>
-    <h1 class="title">funziona contatti? si dai che funziona</h1>
+    <h1 class="title">Contatti</h1>
 </template>
 
 <style lang="scss" scoped>
