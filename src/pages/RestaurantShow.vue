@@ -25,8 +25,14 @@ export default {
 
 <template>
     <div class="container">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, temporibus perspiciatis! At laboriosam soluta sed, quo pariatur cupiditate, id quasi amet quidem sequi esse repellendus accusamus mollitia! Est, laudantium fugit.</p>
         <h1> {{ restaurant.name }} </h1>
+        <span class="text-primary-emphasis"> {{ restaurant.address }} </span>
+        <div>
+            <span v-for="type in restaurant.types"
+            class="text-danger-emphasis d-inline-block fw-semibold me-2">
+             {{ type.name }} 
+            </span>
+        </div>
     </div>
 </template>
 
