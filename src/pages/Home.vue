@@ -14,6 +14,12 @@ export default {
     data() {
         return {
             restaurants: [],
+            selectedTypes: {
+                pizza: {
+                    value: '',
+                }
+
+            },
             search: {
                 type: '',
             }
@@ -21,6 +27,8 @@ export default {
     },
 
     methods: {
+
+
 
         fetchRestaurants() {
             axios.get('http://127.0.0.1:8000/api/restaurants').then((response) => {
@@ -31,16 +39,34 @@ export default {
         },
         filterRestaurants(type) {
             this.search.type = type;
+
             axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.search })
                 .then((response) => {
                     this.restaurants = response.data.results;
                     //console.log(this.restaurants)
                 })
-        }
+        },
+        filterByCheckbox() {
+
+
+            console.log('Selected Types:', this.selectedTypes.pizza.value);
+            // Esegui la richiesta axios con i tipi selezionati
+            axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.selectedTypes })
+                .then((response) => {
+                    this.restaurants = response.data.results;
+                })
+                .catch((error) => {
+                    console.error('Errore nella richiesta axios:', error);
+                });
+        },
+
+
+
 
     },
     mounted() {
         this.fetchRestaurants();
+
     }
 }
 </script>
@@ -54,7 +80,7 @@ export default {
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" v-model="search.type">
     </form> -->
     <div class="container my-4">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-2 ">
                 <div class="card card-clickable" @click="filterRestaurants('Pizza')">
                     <div class="image-background" style="background-image: url('../../public/pizza.jpeg')">
@@ -97,8 +123,41 @@ export default {
                     </div>
                 </div>
             </div>
+        </div> -->
+    </div>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-2">
+                <label>
+                    <input type="checkbox" v-model="selectedTypes.pizza.value" value="Pizza" @click="filterByCheckbox()" />
+                    Pizza
+                </label>
+            </div>
+            <div class="col-2">
+                <label>
+                    <input type="checkbox" v-model="selectedTypes" value="Sushi" @click="filterByCheckbox()" />
+                    Sushi
+                </label>
+            </div>
+            <div class="col-2">
+                <label>
+                    <input type="checkbox" v-model="selectedTypes" value="Hamburger" @click="filterByCheckbox()" />
+                    Hamburger
+                </label>
+            </div>
+            <div class="col-2">
+                <label>
+                    <input type="checkbox" v-model="selectedTypes" value="Poke" @click="filterByCheckbox()" />
+                    Poke
+                </label>
+            </div>
+
+            <!-- Aggiungi più checkbox per le altre tipologie -->
         </div>
     </div>
+
+
 
     <div class="container my-4">
         <div class="row">
@@ -129,6 +188,10 @@ export default {
     align-items: center;
 }
 
+.selected {
+    background-color: orange;
+}
+
 .card-clickable:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -142,3 +205,4 @@ export default {
     transform: scale(1.03);
 }
 </style>
+
