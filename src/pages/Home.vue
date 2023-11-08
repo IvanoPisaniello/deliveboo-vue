@@ -14,30 +14,58 @@ export default {
     data() {
         return {
             restaurants: [],
+            selectedTypes: {
+                Pizza: {
+                    value: 'false',
+                },
+                Sushi: {
+                    value: 'false',
+                },
+                Hamburger: {
+                    value: 'false',
+                },
+                Poke: {
+                    value: 'false',
+                },
+                Cinese: {
+                    value: 'false',
+                },
+                Indiano: {
+                    value: 'false',
+                }
+            },
             search: {
                 type: '',
-            }
+            },
+            searchError: ''
         }
     },
 
     methods: {
-
         fetchRestaurants() {
-            axios.get('http://127.0.0.1:8000/api/restaurants').then((response) => {
-                this.restaurants = response.data.results;
-                //console.log(response.data.results)
-            })
-
+            axios.get('http://127.0.0.1:8000/api/restaurants')
+                .then((response) => {
+                    this.restaurants = response.data.results;
+                    //console.log(this.types)
+                })
         },
         filterRestaurants(type) {
             this.search.type = type;
+
             axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.search })
                 .then((response) => {
                     this.restaurants = response.data.results;
                     //console.log(this.restaurants)
                 })
-        }
-
+        },
+        filterByCheckbox() {
+            // Esegui la richiesta axios con i tipi selezionati
+            axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.selectedTypes })
+                .then((response) => {
+                    this.restaurants = response.data.results;
+                    this.searchError = response.data.error;
+                })
+        },
     },
     mounted() {
         this.fetchRestaurants();
@@ -54,7 +82,7 @@ export default {
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" v-model="search.type">
     </form> -->
     <div class="container my-4">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-2 ">
                 <div class="card card-clickable" @click="filterRestaurants('Pizza')">
                     <div class="image-background" style="background-image: url('../../public/pizza.jpeg')">
@@ -97,6 +125,64 @@ export default {
                     </div>
                 </div>
             </div>
+        </div> -->
+    </div>
+
+    <div class="container my-4">
+        <div class="row">
+            <!-- Pizza -->
+            <div class="col-2">
+                <label>
+                    <input type="checkbox" v-model="selectedTypes.Pizza.value">
+                    Pizza
+                </label>
+            </div>
+
+            <!-- Sushi -->
+            <div class="col-2">
+                <label>
+                    <input type="checkbox" v-model="selectedTypes.Sushi.value">
+                    Sushi
+                </label>
+            </div>
+
+            <!-- Hamburger -->
+            <div class="col-2">
+                <label>
+                    <input type="checkbox" v-model="selectedTypes.Hamburger.value">
+                    Hamburger
+                </label>
+            </div>
+
+            <!-- Poke -->
+            <div class="col-2">
+                <label>
+                    <input type="checkbox" v-model="selectedTypes.Poke.value">
+                    Poke
+                </label>
+            </div>
+
+            <!-- Cinese -->
+            <div class="col-2">
+                <label>
+                    <input type="checkbox" v-model="selectedTypes.Cinese.value">
+                    Cinese
+                </label>
+            </div>
+
+            <!-- Indiano -->
+            <div class="col-2">
+                <label>
+                    <input type="checkbox" v-model="selectedTypes.Indiano.value">
+                    Indiano
+                </label>
+            </div>
+            <button @click="filterByCheckbox()" class="btn btn-primary my-3">Cerca</button>
+
+            <!-- Messaggio di errore in caso non si trovassero ristoranti -->
+            <div class="text-danger fw-medium p-0 my-3">
+                {{ searchError }}
+            </div>
         </div>
     </div>
 
@@ -129,6 +215,10 @@ export default {
     align-items: center;
 }
 
+.selected {
+    background-color: orange;
+}
+
 .card-clickable:hover {
     transform: scale(1.05);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -142,3 +232,4 @@ export default {
     transform: scale(1.03);
 }
 </style>
+
