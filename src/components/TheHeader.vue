@@ -18,11 +18,19 @@ export default {
                     title: "Chi Siamo",
                     route: "chi-siamo",
                 }
-            ]
+            ],
+            cartDish: [],
         }
     },
     methods: {
-    }
+    },
+    created() {
+        const cartData = localStorage.getItem('cartDish');
+        if (cartData) {
+            this.cartDish = JSON.parse(cartData);
+        }
+    },
+
 }
 </script>
 <template>
@@ -59,7 +67,12 @@ export default {
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <p>Try scrolling the rest of the page to see this option in action.</p>
+                <p>Carrello:</p>
+                <ul>
+                    <li v-for="item in cartDish">
+                        {{ item.title }} - {{ item.price }}
+                    </li>
+                </ul>
             </div>
         </div>
 

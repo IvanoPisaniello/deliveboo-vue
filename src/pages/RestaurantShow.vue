@@ -11,6 +11,7 @@ export default {
         }
     },
     methods: {
+
         fetchSingleRestaurant() {
             axios.get(`http://127.0.0.1:8000/api/restaurants/${this.$route.params.slug}`)
                 .then((response) => {
@@ -23,14 +24,15 @@ export default {
             return `http://127.0.0.1:8000/storage/${image}`;
         },
 
-        // addDish() {
-        //     const dishArray = 
-
-        // }
+        saveCartToLocalStorage() {
+            localStorage.setItem('cartDish', JSON.stringify(this.cartDish));
+        },
 
         incrementCount(dish) {
             this.cartDish.push(dish);
-            dish.count++;
+            this.count++;
+            this.saveCartToLocalStorage();
+            this.$forceUpdate();
         },
         decrementCount(dish) {
             if (this.count > 0) {
@@ -43,12 +45,23 @@ export default {
                 }
                 console.log(this.cartDish);
             }
-        }
+            this.saveCartToLocalStorage();
+        },
+
 
 
     },
+    updated() {
+        // Forza l'aggiornamento dell'offcanvas quando il carrello cambia
+        this.$forceUpdate();
+    },
     mounted() {
         this.fetchSingleRestaurant();
+
+        const cartDish = localStorage.getItem('cartDish');
+        if (cartDish) {
+            this.cartDish = JSON.parse(cartDish);
+        }
     },
 
 
@@ -88,8 +101,8 @@ export default {
                         <div class="mt-auto"> {{ dish.price }}€ </div>
                         <div class="d-flex">
                             <p class="card-text">Valore attuale: {{ count }}</p>
-                            <button @click="incrementCount(dish.id)" class="btn btn-primary">+</button>
-                            <button @click="decrementCount(dish.id)" class="btn btn-danger">-</button>
+                            <button @click="incrementCount(dish)" class="btn btn-primary">+</button>
+                            <button @click="decrementCount(dish)" class="btn btn-danger">-</button>
                         </div>
                     </div>
                 </div>
@@ -105,6 +118,4 @@ export default {
 #padding {
     padding-top: $padding-container;
 }
-
-.container {}
 </style>
