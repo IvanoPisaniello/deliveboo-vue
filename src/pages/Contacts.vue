@@ -18,5 +18,9 @@ export default {
     padding-top: $padding-container;
 }
 
-.container {}
+.container {
+    title{
+        
+    }
+}
 </style>

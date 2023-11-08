@@ -27,7 +27,7 @@ export default {
 </script>
 
 <template>
-    <div class="container">
+    <div class="container" id="padding">
         <h1> {{ restaurant.name }} </h1>
         <span class="text-primary-emphasis"> {{ restaurant.address }} </span>
         <div>
@@ -66,7 +66,12 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use "../src/styles/partials/variable" as *;
+
+#padding {
+    padding-top: $padding-container;
+}
 .container {
-    margin-top: 200px;
+   
 }
 </style>
