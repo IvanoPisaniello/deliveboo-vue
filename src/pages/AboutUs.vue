@@ -7,38 +7,51 @@ export default {
 
 
 <template>
-    <div class="container">
+    <div class="container" id="padding">
         <div class="row">
-            <div class="col-4">
-                <h1 class="title">Non hai tempo per preparare il 
-                    <span class="text-warning">cibo</span>?
-                </h1>
-                <p class="mt-4">
-                    Scegli uno dei nostri piani, inserisci i tempi di consegna e goditi del 
-                    delizioso cibo senza uscire di casa!
-                </p>
-                <div class="d-flex justify-content-between align-items-center mt-4">
-                    <button type="button" class="btn btn-warning btn-lg rounded-pill">Ordina ora</button>
-                    <span>oppure</span>
-                    <button type="button" class="btn btn-outline-dark">Leggi di più</button>
+            <div class="col-6">
+                <div class="container">
+                    <div class="row p-5">
+
+                        <h1 class="title">Non hai tempo per preparare il
+                            <span class="color-ylw">cibo</span>?
+                        </h1>
+                        <p class="mt-4">
+                            Scegli uno dei nostri piani, inserisci i tempi di consegna e goditi del
+                            delizioso cibo senza uscire di casa!
+                        </p>
+                        <div class="d-flex gap-4 mt-4">
+                            <button type="button" class="btn bg-ylw btn-lg rounded-pill text-white">Ordina ora</button>
+                            <button type="button" class="btn btn-outline-dark">Leggi di più</button>
+                        </div>
+                    </div>
                 </div>
-                
             </div>
-            <div class="col-8">
+            <div class="col-6">
                 <img class="img-fluid" src="/fast-food-pictures.jpg" alt="fast-food-wallpaper">
             </div>
         </div>
-        
+
     </div>
 </template>
 
 <style lang="scss" scoped>
-.title {
-    margin-top: 200px;
+@use "../src/styles/partials/variable" as *;
+
+#padding {
+    padding-top: $padding-container;
 }
 
 .container {
     max-width: 1140px;
-    margin-top: 200px;
+
+
+    .color-ylw {
+        color: $primary-color;
+    }
+
+    .bg-ylw {
+        background-color: $primary-color;
+    }
 }
 </style>

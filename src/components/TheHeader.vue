@@ -18,24 +18,28 @@ export default {
                     title: "Chi Siamo",
                     route: "chi-siamo",
                 }
-            ]
+            ],
+            cartDish: [],
         }
     },
     methods: {
-    }
+    },
+    created() {
+        const cartData = localStorage.getItem('cartDish');
+        if (cartData) {
+            this.cartDish = JSON.parse(cartData);
+        }
+    },
+
 }
 </script>
 <template>
-    <header class="d-flex justify-content-center position-relative">
-        <div class="container position-absolute">
+    <header class="d-flex justify-content-center w-100 position-fixed">
+        <div class="container-fluid bg">
             <nav class="navbar navbar-expand-lg ">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Navbar</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+
                     <div class="collapse navbar-collapse" id="navbarsExample02">
                         <ul class="navbar-nav me-auto mb-2 mb-sm-0 align-items-center">
                             <li class="nav-item" v-for="link in navLinks">
@@ -44,9 +48,34 @@ export default {
                             </li>
                         </ul>
                     </div>
+
                 </div>
+
             </nav>
+
+
         </div>
+        <button class="btn bg-ylw" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </button>
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+            id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <p>Carrello:</p>
+                <ul>
+                    <li v-for="item in cartDish">
+                        {{ item.title }} - {{ item.price }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+
 
     </header>
 </template>
@@ -55,13 +84,24 @@ export default {
 @use "../src/styles/partials/variable" as *;
 
 header {
-    .container {
-        z-index: 10;
-        top: 20px;
+
+    z-index: 100;
+
+    .bg {
+        background-color: $secondary-color;
     }
 
-    .navbar {
-        background-color: $secondary-color;
+    .bg-ylw {
+        background-color: $primary-color;
+    }
+
+    .btn {
+        border-radius: 0;
+        background-color: $primary-color;
+    }
+
+    i {
+        font-size: larger;
     }
 
 }
