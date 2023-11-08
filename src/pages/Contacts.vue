@@ -6,11 +6,17 @@ export default {
 </script>
 
 <template>
-    <h1 class="title">Contatti</h1>
+    <div class="container" id="padding">
+        <h1 class="title">Contatti</h1>
+    </div>
 </template>
 
 <style lang="scss" scoped>
-.title {
-    margin-top: 200px;
+@use "../src/styles/partials/variable" as *;
+
+#padding {
+    padding-top: $padding-container;
 }
+
+.container {}
 </style>
