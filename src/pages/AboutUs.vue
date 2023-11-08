@@ -33,6 +33,8 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use "../src/styles/partials/variable" as *;
+
 .title {
     margin-top: 200px;
 }
