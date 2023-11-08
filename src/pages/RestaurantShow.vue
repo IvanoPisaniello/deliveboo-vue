@@ -72,6 +72,6 @@ export default {
     padding-top: $padding-container;
 }
 .container {
-   
+
 }
 </style>
