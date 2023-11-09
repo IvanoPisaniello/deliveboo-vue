@@ -31,14 +31,13 @@ export default {
         }
     },
     created() {
-        retrieveCartData() {
-            const cartData = localStorage.getItem('cartDish');
-            if (cartData) {
-                this.cartDish = JSON.parse(cartData);
-            }
-        }
-    }
+        this.retrieveCartData();
 
+
+        setInterval(() => {
+            this.retrieveCartData();
+        }, 500);
+    },
 
 }
 </script>
