@@ -31,13 +31,14 @@ export default {
         }
     },
     created() {
-        this.retrieveCartData(); // Chiamare la funzione una volta all'inizio
+        retrieveCartData() {
+            const cartData = localStorage.getItem('cartDish');
+            if (cartData) {
+                this.cartDish = JSON.parse(cartData);
+            }
+        }
+    }
 
-        // Aggiornare i dati ogni secondo
-        setInterval(() => {
-            this.retrieveCartData();
-        }, 500);
-    },
 
 }
 </script>
