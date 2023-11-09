@@ -23,12 +23,20 @@ export default {
         }
     },
     methods: {
+        retrieveCartData() {
+            const cartData = localStorage.getItem('cartDish');
+            if (cartData) {
+                this.cartDish = JSON.parse(cartData);
+            }
+        }
     },
     created() {
-        const cartData = localStorage.getItem('cartDish');
-        if (cartData) {
-            this.cartDish = JSON.parse(cartData);
-        }
+        this.retrieveCartData(); // Chiamare la funzione una volta all'inizio
+
+        // Aggiornare i dati ogni secondo
+        setInterval(() => {
+            this.retrieveCartData();
+        }, 500);
     },
 
 }
