@@ -21,6 +21,7 @@ export default {
                     route: "chi-siamo",
                 }
             ],
+
         }
     },
     methods: {
@@ -87,6 +88,8 @@ export default {
                         </button>
                     </li>
                 </ul>
+
+                <router-link :to="{ name: 'order' }">Completa L'ordine</router-link>
             </div>
         </div>
 
