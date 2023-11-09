@@ -1,10 +1,12 @@
 <script>
 
 import axios from "axios";
+import { store, clearCart, removeItem } from '../store'
 
 export default {
     data() {
         return {
+            store,
             navLinks: [
                 {
                     title: "Home",
@@ -19,20 +21,20 @@ export default {
                     route: "chi-siamo",
                 }
             ],
-            cartDish: [],
         }
     },
     methods: {
         retrieveCartData() {
             const cartData = localStorage.getItem('cartDish');
             if (cartData) {
-                this.cartDish = JSON.parse(cartData);
+                store.cartDish = JSON.parse(cartData);
             }
-        }
+        },
+        clearCart,
+        removeItem
     },
     created() {
         this.retrieveCartData();
-
 
         setInterval(() => {
             this.retrieveCartData();
@@ -72,13 +74,17 @@ export default {
             id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+                <button class="btn btn-success btn-custom rounded-1 me-3" @click="clearCart">Pulisci Carrello</button>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <p>Carrello:</p>
                 <ul>
-                    <li v-for="item in cartDish">
+                    <li v-for="(item, index) in store.cartDish" :key="index">
                         {{ item.title }} - {{ item.price }}
+                        <button class="btn btn-danger my-2" @click="removeItem(index)">
+                            X
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -103,7 +109,7 @@ header {
         background-color: $primary-color;
     }
 
-    .btn {
+    .btn-custom {
         border-radius: 0;
         background-color: $primary-color;
     }

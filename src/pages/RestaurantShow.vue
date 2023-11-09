@@ -1,13 +1,13 @@
 <script>
 import axios from 'axios';
+import { store, incrementCount, decrementCount } from '../store'
+
 
 export default {
     data() {
         return {
+            store,
             restaurant: {},
-            count: 0,
-            cartDish: [],
-
         }
     },
     methods: {
@@ -23,44 +23,15 @@ export default {
         getImagePath(image) {
             return `http://127.0.0.1:8000/storage/${image}`;
         },
-
-        saveCartToLocalStorage() {
-            localStorage.setItem('cartDish', JSON.stringify(this.cartDish));
-        },
-
-        incrementCount(dish) {
-            this.cartDish.push(dish);
-            this.count++;
-            this.saveCartToLocalStorage();
-            this.$forceUpdate();
-        },
-        decrementCount(dish) {
-            if (this.count > 0) {
-                this.count--;
-
-                const index = this.cartDish.findIndex(item => item.id === dish.id);
-                if (index !== -1) {
-
-                    this.cartDish.splice(index, 1);
-                }
-                console.log(this.cartDish);
-            }
-            this.saveCartToLocalStorage();
-        },
-
-
-
-    },
-    updated() {
-        // Forza l'aggiornamento dell'offcanvas quando il carrello cambia
-        //this.$forceUpdate();
+        incrementCount,
+        decrementCount
     },
     mounted() {
         this.fetchSingleRestaurant();
 
         const cartDish = localStorage.getItem('cartDish');
         if (cartDish) {
-            this.cartDish = JSON.parse(cartDish);
+            store.cartDish = JSON.parse(cartDish);
         }
     },
 
@@ -101,7 +72,7 @@ export default {
                         </p>
                         <div class="mt-auto"> {{ dish.price }}€ </div>
                         <div class="d-flex">
-                            <p class="card-text">Valore attuale: {{ count }}</p>
+                            <p class="card-text">Valore attuale: {{ store.count }}</p>
                             <button @click="incrementCount(dish)" class="btn btn-primary">+</button>
                             <button @click="decrementCount(dish)" class="btn btn-danger">-</button>
                         </div>
