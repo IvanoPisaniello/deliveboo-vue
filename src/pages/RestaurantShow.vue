@@ -87,7 +87,7 @@ export default {
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title"> {{ dish.title }} </h5>
                         <div>
-                            <span v-if="dish.discount != null" class="badge rounded-pill text-bg-success"> -{{ dish.discount
+                            <span v-if="dish.discount != null && dish.discount > 0" class="badge rounded-pill text-bg-success"> -{{ dish.discount
                             }}%
                             </span>
                         </div>
