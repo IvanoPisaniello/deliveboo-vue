@@ -131,7 +131,7 @@ export default {
     <div class="container my-4">
         <div class="row">
             <!-- Pizza -->
-            <div class="col-2">
+            <div class="col-sm-6 col-md-4 col-lg-2">
                 <label>
                     <input type="checkbox" v-model="selectedTypes.Pizza.value">
                     Pizza
@@ -139,7 +139,7 @@ export default {
             </div>
 
             <!-- Sushi -->
-            <div class="col-2">
+            <div class=" col-sm-6 col-md-4 col-lg-2">
                 <label>
                     <input type="checkbox" v-model="selectedTypes.Sushi.value">
                     Sushi
@@ -147,7 +147,7 @@ export default {
             </div>
 
             <!-- Hamburger -->
-            <div class="col-2">
+            <div class="col-sm-6 col-md-4 col-lg-2">
                 <label>
                     <input type="checkbox" v-model="selectedTypes.Hamburger.value">
                     Hamburger
@@ -155,7 +155,7 @@ export default {
             </div>
 
             <!-- Poke -->
-            <div class="col-2">
+            <div class="col-sm-6 col-md-4 col-lg-2">
                 <label>
                     <input type="checkbox" v-model="selectedTypes.Poke.value">
                     Poke
@@ -163,7 +163,7 @@ export default {
             </div>
 
             <!-- Cinese -->
-            <div class="col-2">
+            <div class="col-sm-6 col-md-4 col-lg-2">
                 <label>
                     <input type="checkbox" v-model="selectedTypes.Cinese.value">
                     Cinese
@@ -171,7 +171,7 @@ export default {
             </div>
 
             <!-- Indiano -->
-            <div class="col-2">
+            <div class="col-sm-6 col-md-4 col-lg-2">
                 <label>
                     <input type="checkbox" v-model="selectedTypes.Indiano.value">
                     Indiano

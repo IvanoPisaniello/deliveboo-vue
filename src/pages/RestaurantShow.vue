@@ -80,15 +80,16 @@ export default {
         </div>
         <h3 class="mt-3">I nostri piatti</h3>
         <div class="row">
-            <div v-for="dish in restaurant.dishes" class="col-4">
+            <div v-for="dish in restaurant.dishes" class="col-sm-6 col-md-3 col-lg-4 mb-5">
                 <div class="card h-100">
                     <img :src="getImagePath(dish.image)" class="card-img-top" alt="img_dish"
                         style="height: 190px;object-fit: cover;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title"> {{ dish.title }} </h5>
                         <div>
-                            <span v-if="dish.discount != null && dish.discount > 0" class="badge rounded-pill text-bg-success"> -{{ dish.discount
-                            }}%
+                            <span v-if="dish.discount != null && dish.discount > 0"
+                                class="badge rounded-pill text-bg-success"> -{{ dish.discount
+                                }}%
                             </span>
                         </div>
                         <p class="card-text">
