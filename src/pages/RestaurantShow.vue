@@ -51,8 +51,8 @@ export default {
         </div>
         <h3 class="mt-3">I nostri piatti</h3>
         <div class="row">
-            <div v-for="dish in restaurant.dishes" class="col-sm-6 col-md-3 col-lg-4 mb-5">
-                <div class="card h-100">
+            <div v-for="dish in restaurant.dishes" :class="{ 'col-sm-6 col-lg-4 mb-5': dish.visible, 'd-none': !dish.visible }">
+                <div class="card">
                     <img :src="getImagePath(dish.image)" class="card-img-top" alt="img_dish"
                         style="height: 190px;object-fit: cover;">
                     <div class="card-body d-flex flex-column">
@@ -90,4 +90,6 @@ export default {
 #padding {
     padding-top: $padding-container;
 }
+
+
 </style>
