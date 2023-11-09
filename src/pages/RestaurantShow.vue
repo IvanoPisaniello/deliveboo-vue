@@ -29,10 +29,16 @@ export default {
         },
 
         incrementCount(dish) {
-            this.cartDish.push(dish);
-            this.count++;
-            this.saveCartToLocalStorage();
-            this.$forceUpdate();
+            if (this.cartDish.length === 0 || this.cartDish[0].restaurant_id === dish.restaurant_id) {
+
+                this.cartDish.push(dish);
+                this.count++;
+                this.saveCartToLocalStorage();
+                // this.$forceUpdate();
+            } else {
+
+                console.log('Non puoi aggiungere piatti da ristoranti diversi allo stesso carrello.');
+            }
         },
         decrementCount(dish) {
             if (this.count > 0) {
@@ -53,7 +59,7 @@ export default {
     },
     updated() {
         // Forza l'aggiornamento dell'offcanvas quando il carrello cambia
-        this.$forceUpdate();
+        // this.$forceUpdate();
     },
     mounted() {
         this.fetchSingleRestaurant();

@@ -28,7 +28,16 @@ export default {
             if (cartData) {
                 this.cartDish = JSON.parse(cartData);
             }
-        }
+        },
+        clearCart() {
+            localStorage.clear();
+            this.cartDish = null;
+        },
+        removeItem(index) {
+            this.cartDish.splice(index, 1);
+            localStorage.setItem('cartDish', JSON.stringify(this.cartDish));
+        },
+
     },
     created() {
         this.retrieveCartData();
@@ -37,6 +46,7 @@ export default {
         setInterval(() => {
             this.retrieveCartData();
         }, 500);
+
     },
 
 }
@@ -71,14 +81,17 @@ export default {
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
             id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
+                <button class="btn btn-success" @click="clearCart">Pulisci Carrello</button>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <p>Carrello:</p>
                 <ul>
-                    <li v-for="item in cartDish">
+                    <li v-for="(item, index) in cartDish" :key="index">
                         {{ item.title }} - {{ item.price }}
+                        <button class="btn btn-danger" @click="removeItem(index)">
+                            X
+                        </button>
                     </li>
                 </ul>
             </div>
@@ -104,7 +117,7 @@ header {
     }
 
     .btn {
-        border-radius: 0;
+        border-radius: 3px;
         background-color: $primary-color;
     }
 
