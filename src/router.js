@@ -4,6 +4,7 @@ import Home from "./pages/Home.vue";
 import Contacts from "./pages/Contacts.vue";
 import AboutUs from "./pages/AboutUs.vue";
 import RestaurantShow from "./pages/RestaurantShow.vue";
+import Order from "./pages/Order.vue";
 
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
         path: "/contatti",
         name: "contatti",
         component: Contacts,
+    },
+    {
+        path: "/order",
+        name: "order",
+        component: Order,
     },
 
 ];
