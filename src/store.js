@@ -1,39 +1,56 @@
 import { reactive } from "vue";
 
 export const store = reactive({
-  count: 0,
+  counts: {},
   cartDish: [],
 })
 
 export function incrementCount(dish) {
-  if (store.cartDish.length === 0 || store.cartDish[0].restaurant_id === dish.restaurant_id) {
+  const dishInCart = store.cartDish.find(item => item.id === dish.id);
 
-    store.cartDish.push(dish);
-    store.count++;
-    saveCartToLocalStorage();
+  if (!dishInCart) {
+    store.cartDish.push({ id: dish.id, count: 1, restaurant_id: dish.restaurant_id, title: dish.title, price: dish.price });
+    store.counts[dish.id] = 1;
   } else {
-
-    alert('Non puoi aggiungere piatti da ristoranti diversi allo stesso carrello.');
+    if (store.cartDish.length === 0 || store.cartDish[0].restaurant_id === dish.restaurant_id) {
+      dishInCart.count++;
+      store.counts[dish.id]++;
+    } else {
+      alert('Non puoi aggiungere piatti da ristoranti diversi allo stesso carrello.');
+      return;
+    }
   }
+  console.log(store.cartDish)
+  saveCartToLocalStorage();
 }
 
 
 export function decrementCount(dish) {
-  if (store.count > 0) {
-    store.count--;
 
-    const index = store.cartDish.findIndex(item => item.id === dish.id);
-    if (index !== -1) {
+  if (store.counts > 0) {
+    const dishInCart = store.cartDish.find(item => item.id === dish.id)
 
-      store.cartDish.splice(index, 1);
+    if (dishInCart) {
+      if (dishInCart > 1) {
+        dishInCart.counts--;
+      } else {
+        const index = store.cartDish.findIndex(item => item.id === dish.id);
+        if (index !== -1) {
+
+          store.cartDish.splice(index, 1);
+        }
+
+      }
+      store.counts[dish.id]
+      saveCartToLocalStorage();
     }
-    //console.log(store.cartDish);
   }
-  saveCartToLocalStorage();
+
 }
 
 export function saveCartToLocalStorage() {
   localStorage.setItem('cartDish', JSON.stringify(store.cartDish));
+  localStorage.setItem('counts', JSON.stringify(store.counts));
 }
 
 export function clearCart() {

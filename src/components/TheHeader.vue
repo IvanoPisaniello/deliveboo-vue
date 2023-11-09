@@ -1,7 +1,7 @@
 <script>
 
 import axios from "axios";
-import { store, clearCart, removeItem } from '../store'
+import { store, clearCart, removeItem, decrementCount } from '../store'
 
 export default {
     data() {
@@ -32,8 +32,11 @@ export default {
             }
         },
         clearCart,
-        removeItem
+        removeItem,
+        decrementCount,
+
     },
+
     created() {
         this.retrieveCartData();
 
@@ -82,10 +85,11 @@ export default {
                 <p>Carrello:</p>
                 <ul>
                     <li v-for="(item, index) in store.cartDish" :key="index">
-                        {{ item.title }} - {{ item.price }}
+                        {{ item.count }} - {{ item.title }} - {{ item.price }}
                         <button class="btn btn-danger my-2" @click="removeItem(index)">
                             X
                         </button>
+                        <button @click="decrementCount(dish)" class="btn btn-danger">-</button>
                     </li>
                 </ul>
 
