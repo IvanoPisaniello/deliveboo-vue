@@ -53,7 +53,7 @@ export default {
     },
     updated() {
         // Forza l'aggiornamento dell'offcanvas quando il carrello cambia
-        this.$forceUpdate();
+        //this.$forceUpdate();
     },
     mounted() {
         this.fetchSingleRestaurant();
