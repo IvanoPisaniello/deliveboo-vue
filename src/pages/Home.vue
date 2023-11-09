@@ -1,6 +1,4 @@
 <script>
-
-
 import axios from "axios";
 
 import Card from '../components/Card.vue';
@@ -37,7 +35,6 @@ export default {
             search: {
                 type: '',
             },
-            searchError: ''
         }
     },
 
@@ -55,7 +52,7 @@ export default {
             axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.search })
                 .then((response) => {
                     this.restaurants = response.data.results;
-                    //console.log(this.restaurants)
+                    console.log(this.restaurants)
                 })
         },
         filterByCheckbox() {
@@ -72,7 +69,6 @@ export default {
     }
 }
 </script>
-
 
 
 <template>
@@ -178,18 +174,21 @@ export default {
                 </label>
             </div>
             <button @click="filterByCheckbox()" class="btn btn-primary my-3">Cerca</button>
-
-            <!-- Messaggio di errore in caso non si trovassero ristoranti -->
-            <div class="text-danger fw-medium p-0 my-3">
-                {{ searchError }}
-            </div>
         </div>
     </div>
 
 
     <div class="container my-4">
         <div class="row">
-            <Card v-for="restaurant in restaurants" :singleCard="restaurant"></Card>
+            <Card v-if="restaurants[0] != 'false'" v-for="restaurant in restaurants" :singleCard="restaurant"></Card>
+
+            <!-- Messaggio di errore in caso non si trovassero ristoranti -->
+            <div v-else class="p-0 d-flex flex-column align-items-center">
+                <div class="fw-bold fs-4">
+                    NESSUN RISULTATO
+                </div>
+                <img class="no-match-img" src="../../public/notFoundImage.jpg" alt="">
+            </div>
         </div>
     </div>
 </template>
@@ -231,6 +230,11 @@ export default {
 
 .card-clickable:active {
     transform: scale(1.03);
+}
+
+.no-match-img {
+    width: 300px;
+    aspect-ratio: 1/1;
 }
 </style>
 
