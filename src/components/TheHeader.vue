@@ -43,13 +43,15 @@ export default {
     },
 
     created() {
-        this.retrieveCartData();
+        //this.retrieveCartData();
+        console.log('Storage: ', JSON.parse(localStorage.getItem('cartDish')))
 
-        setInterval(() => {
-            this.retrieveCartData();
-            this.updateTotalPrice();
-            this.updateCartItemCount();
-        }, 500);
+        //setInterval(() => {
+            //store.cartDish = JSON.parse(localStorage.getItem('cartDish'))
+            //this.retrieveCartData();
+            // this.updateTotalPrice();
+            // this.updateCartItemCount();
+        //}, 500);
 
 
     },
@@ -95,7 +97,7 @@ export default {
                 <p>Carrello:</p>
                 <ul>
                     <li v-for="(item, index) in store.cartDish" :key="index">
-                        {{ item.count }} - {{ item.title }} - {{ item.price }}
+                        {{ item.singleDishQuantity }} - {{ item.singleDish.title }} - {{ item.singleDish.price }}
                         <button class="btn btn-danger my-2" @click="removeItem(index)">
                             X
                         </button>
