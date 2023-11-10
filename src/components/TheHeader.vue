@@ -102,7 +102,7 @@ export default {
                         <button @click="decrementCount(item)" class="btn btn-danger">-</button>
                     </li>
                 </ul>
-                <p>Totale: {{ totalPrice }}€</p>
+                <p>Totale: {{ store.amount }}€</p>
                 <router-link :to="{ name: 'order' }">Completa L'ordine</router-link>
             </div>
         </div>

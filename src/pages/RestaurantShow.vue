@@ -73,7 +73,6 @@ export default {
                         </p>
                         <div class="mt-auto"> {{ dish.price }}€ </div>
                         <div class="d-flex">
-                            <p class="card-text">Valore attuale: {{ store.counts[dish.id] || 0 }}</p>
                             <button @click="incrementCount(dish)" class="btn btn-primary">+</button>
 
                         </div>
