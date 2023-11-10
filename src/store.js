@@ -3,6 +3,8 @@ import { reactive } from "vue";
 export const store = reactive({
   counts: {},
   cartDish: [],
+  totalPrice: 0,
+  cartItemCount: 0,
 })
 
 export function incrementCount(dish) {
@@ -24,29 +26,44 @@ export function incrementCount(dish) {
   saveCartToLocalStorage();
 }
 
+export function updateCartItemCount() {
+  this.cartItemCount = store.cartDish.reduce((total, item) => {
+    return total + item.count;
+  }, 0);
+}
 
 export function decrementCount(dish) {
-
-  if (store.counts > 0) {
-    const dishInCart = store.cartDish.find(item => item.id === dish.id)
+  if (store.counts[dish.id] > 0) {
+    const dishInCart = store.cartDish.find(item => item.id === dish.id);
 
     if (dishInCart) {
-      if (dishInCart > 1) {
-        dishInCart.counts--;
+      if (dishInCart.count > 1) {
+        dishInCart.count--;
+        store.counts[dish.id]--;
       } else {
         const index = store.cartDish.findIndex(item => item.id === dish.id);
         if (index !== -1) {
-
           store.cartDish.splice(index, 1);
+          delete store.counts[dish.id];
         }
-
       }
-      store.counts[dish.id]
       saveCartToLocalStorage();
     }
   }
-
 }
+
+export function updateTotalPrice() {
+  this.totalPrice = store.cartDish.reduce((total, item) => {
+    const itemCount = item.count || 0;
+    const itemPrice = item.price || 0;
+    return total + (itemCount * itemPrice);
+  }, 0);
+}
+
+
+
+
+
 
 export function saveCartToLocalStorage() {
   localStorage.setItem('cartDish', JSON.stringify(store.cartDish));

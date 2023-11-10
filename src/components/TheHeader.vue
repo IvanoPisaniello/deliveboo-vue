@@ -1,7 +1,7 @@
 <script>
 
 import axios from "axios";
-import { store, clearCart, removeItem, decrementCount } from '../store'
+import { store, clearCart, removeItem, decrementCount, updateTotalPrice, updateCartItemCount } from '../store'
 
 export default {
     data() {
@@ -22,6 +22,7 @@ export default {
                 }
             ],
 
+
         }
     },
     methods: {
@@ -34,6 +35,10 @@ export default {
         clearCart,
         removeItem,
         decrementCount,
+        updateTotalPrice,
+        updateCartItemCount,
+
+
 
     },
 
@@ -42,7 +47,11 @@ export default {
 
         setInterval(() => {
             this.retrieveCartData();
+            this.updateTotalPrice();
+            this.updateCartItemCount();
         }, 500);
+
+
     },
 
 }
@@ -72,6 +81,7 @@ export default {
         <button class="btn bg-ylw" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
             aria-controls="offcanvasScrolling">
             <i class="fa-solid fa-cart-shopping"></i>
+            <span v-if="cartItemCount > 0" class="badge bg-danger">{{ cartItemCount }}</span>
         </button>
 
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
@@ -89,10 +99,10 @@ export default {
                         <button class="btn btn-danger my-2" @click="removeItem(index)">
                             X
                         </button>
-                        <button @click="decrementCount(dish)" class="btn btn-danger">-</button>
+                        <button @click="decrementCount(item)" class="btn btn-danger">-</button>
                     </li>
                 </ul>
-
+                <p>Totale: {{ totalPrice }}€</p>
                 <router-link :to="{ name: 'order' }">Completa L'ordine</router-link>
             </div>
         </div>
