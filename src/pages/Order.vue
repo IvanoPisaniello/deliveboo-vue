@@ -1,4 +1,7 @@
 <script>
+
+import axios from 'axios';
+
 export default {
     data() {
         return {
@@ -12,7 +15,13 @@ export default {
     },
     methods: {
         onFormSubmit() {
-            console.log(this.sendData);
+            axios.post('http://127.0.0.1:8000/api/orders', this.sendData,
+            {
+                headers: { 'Content-Type': 'application/json' }
+            }).then((response) => {
+                console.log(localStorage);
+                console.log(response);
+            })
         }
     },
 }
