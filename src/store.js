@@ -54,7 +54,7 @@ export function decrementCount(dish) {
 }
 
 export function updateTotalPrice() {
-  this.totalPrice = store.cartDish.reduce((total, item) => {
+  store.totalPrice = store.cartDish.reduce((total, item) => {
     const itemCount = item.count || 0;
     const itemPrice = item.price || 0;
     return total + (itemCount * itemPrice);
