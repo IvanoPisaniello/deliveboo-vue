@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-import { store, incrementCount, decrementCount } from '../store'
+import { store, incrementCount, } from '../store'
 
 
 export default {
@@ -24,7 +24,7 @@ export default {
             return `http://127.0.0.1:8000/storage/${image}`;
         },
         incrementCount,
-        decrementCount
+
     },
     mounted() {
         this.fetchSingleRestaurant();
@@ -51,7 +51,8 @@ export default {
         </div>
         <h3 class="mt-3">I nostri piatti</h3>
         <div class="row">
-            <div v-for="dish in restaurant.dishes" :class="{ 'col-sm-6 col-lg-4 mb-5': dish.visible, 'd-none': !dish.visible }">
+            <div v-for="dish in restaurant.dishes"
+                :class="{ 'col-sm-6 col-lg-4 mb-5': dish.visible, 'd-none': !dish.visible }">
                 <div class="card">
                     <img :src="getImagePath(dish.image)" class="card-img-top" alt="img_dish"
                         style="height: 190px;object-fit: cover;">
@@ -72,9 +73,9 @@ export default {
                         </p>
                         <div class="mt-auto"> {{ dish.price }}€ </div>
                         <div class="d-flex">
-                            <p class="card-text">Valore attuale: {{ store.count }}</p>
+                            <p class="card-text">Valore attuale: {{ store.counts[dish.id] || 0 }}</p>
                             <button @click="incrementCount(dish)" class="btn btn-primary">+</button>
-                            <button @click="decrementCount(dish)" class="btn btn-danger">-</button>
+
                         </div>
                     </div>
                 </div>
@@ -90,6 +91,4 @@ export default {
 #padding {
     padding-top: $padding-container;
 }
-
-
 </style>

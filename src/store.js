@@ -1,39 +1,73 @@
 import { reactive } from "vue";
 
 export const store = reactive({
-  count: 0,
+  counts: {},
   cartDish: [],
+  totalPrice: 0,
+  cartItemCount: 0,
 })
 
 export function incrementCount(dish) {
-  if (store.cartDish.length === 0 || store.cartDish[0].restaurant_id === dish.restaurant_id) {
+  const dishInCart = store.cartDish.find(item => item.id === dish.id);
 
-    store.cartDish.push(dish);
-    store.count++;
-    saveCartToLocalStorage();
+  if (!dishInCart) {
+    store.cartDish.push({ id: dish.id, count: 1, restaurant_id: dish.restaurant_id, title: dish.title, price: dish.price });
+    store.counts[dish.id] = 1;
   } else {
-
-    alert('Non puoi aggiungere piatti da ristoranti diversi allo stesso carrello.');
-  }
-}
-
-
-export function decrementCount(dish) {
-  if (store.count > 0) {
-    store.count--;
-
-    const index = store.cartDish.findIndex(item => item.id === dish.id);
-    if (index !== -1) {
-
-      store.cartDish.splice(index, 1);
+    if (store.cartDish.length === 0 || store.cartDish[0].restaurant_id === dish.restaurant_id) {
+      dishInCart.count++;
+      store.counts[dish.id]++;
+    } else {
+      alert('Non puoi aggiungere piatti da ristoranti diversi allo stesso carrello.');
+      return;
     }
-    //console.log(store.cartDish);
   }
+  console.log(store.cartDish)
   saveCartToLocalStorage();
 }
 
+export function updateCartItemCount() {
+  this.cartItemCount = store.cartDish.reduce((total, item) => {
+    return total + item.count;
+  }, 0);
+}
+
+export function decrementCount(dish) {
+  if (store.counts[dish.id] > 0) {
+    const dishInCart = store.cartDish.find(item => item.id === dish.id);
+
+    if (dishInCart) {
+      if (dishInCart.count > 1) {
+        dishInCart.count--;
+        store.counts[dish.id]--;
+      } else {
+        const index = store.cartDish.findIndex(item => item.id === dish.id);
+        if (index !== -1) {
+          store.cartDish.splice(index, 1);
+          delete store.counts[dish.id];
+        }
+      }
+      saveCartToLocalStorage();
+    }
+  }
+}
+
+export function updateTotalPrice() {
+  this.totalPrice = store.cartDish.reduce((total, item) => {
+    const itemCount = item.count || 0;
+    const itemPrice = item.price || 0;
+    return total + (itemCount * itemPrice);
+  }, 0);
+}
+
+
+
+
+
+
 export function saveCartToLocalStorage() {
   localStorage.setItem('cartDish', JSON.stringify(store.cartDish));
+  localStorage.setItem('counts', JSON.stringify(store.counts));
 }
 
 export function clearCart() {
