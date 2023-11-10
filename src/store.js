@@ -10,21 +10,22 @@ export const store = reactive({
 export function incrementCount(dish) {
   const dishInCart = store.cartDish.find(item => item.id === dish.id);
 
+  if (store.cartDish.length > 0 && store.cartDish[0].restaurant_id !== dish.restaurant_id) {
+    alert('Non puoi aggiungere piatti da ristoranti diversi allo stesso carrello.');
+    return;
+  }
+
   if (!dishInCart) {
     store.cartDish.push({ id: dish.id, count: 1, restaurant_id: dish.restaurant_id, title: dish.title, price: dish.price });
     store.counts[dish.id] = 1;
   } else {
-    if (store.cartDish.length === 0 || store.cartDish[0].restaurant_id === dish.restaurant_id) {
       dishInCart.count++;
       store.counts[dish.id]++;
-    } else {
-      alert('Non puoi aggiungere piatti da ristoranti diversi allo stesso carrello.');
-      return;
-    }
+    } 
+    console.log(store.cartDish)
+    saveCartToLocalStorage();
   }
-  console.log(store.cartDish)
-  saveCartToLocalStorage();
-}
+
 
 export function updateCartItemCount() {
   this.cartItemCount = store.cartDish.reduce((total, item) => {
