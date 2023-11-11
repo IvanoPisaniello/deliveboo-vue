@@ -2,12 +2,15 @@
 import axios from "axios";
 
 import Card from '../components/Card.vue';
-import HeroSection from "../components/HeroSection.vue";
+import SectionInfo from "../components/SectionInfo.vue";
+import HeroSection from "../components/HeroSection.vue"
+
 
 export default {
     components: {
         Card,
         HeroSection,
+        SectionInfo,
     },
     data() {
         return {
@@ -77,8 +80,8 @@ export default {
     <!-- <form @keydown.enter.prevent="filterRestaurants()" class="m-3" style="width: 200px;">
         <input class="form-control" type="search" placeholder="Search" aria-label="Search" v-model="search.type">
     </form> -->
-    <div class="container my-4">
-        <!-- <div class="row">
+    <!-- <div class="container my-4">
+        <div class="row">
             <div class="col-2 ">
                 <div class="card card-clickable" @click="filterRestaurants('Pizza')">
                     <div class="image-background" style="background-image: url('../../public/pizza.jpeg')">
@@ -121,10 +124,19 @@ export default {
                     </div>
                 </div>
             </div>
-        </div> -->
-    </div>
+        </div> 
+    </div>-->
 
     <div class="container my-4">
+        <div class="border-arrow my-5">
+            <div class="d-flex">
+                <span class="bg-orange-text-white px-2">
+                    RISTORANTI
+                </span>
+                <div class="arrow"></div>
+
+            </div>
+        </div>
         <div class="row">
             <!-- Pizza -->
             <div class="col-sm-6 col-md-4 col-lg-2">
@@ -178,63 +190,120 @@ export default {
     </div>
 
 
-    <div class="container my-4">
-        <div class="row">
-            <Card v-if="restaurants[0] != 'false'" v-for="restaurant in restaurants" :singleCard="restaurant"></Card>
+    <section class=" my-4">
+        <div class="container">
+            <div class="row">
+                <Card v-if="restaurants[0] != 'false'" v-for="restaurant in restaurants" :singleCard="restaurant">
+                </Card>
 
-            <!-- Messaggio di errore in caso non si trovassero ristoranti -->
-            <div v-else class="p-0 d-flex flex-column align-items-center">
-                <div class="fw-bold fs-4">
-                    NESSUN RISULTATO
+                <!-- Messaggio di errore in caso non si trovassero ristoranti -->
+                <div v-else class="p-0 d-flex flex-column align-items-center">
+                    <div class="fw-bold fs-4">
+                        NESSUN RISULTATO
+                    </div>
+                    <img class="no-match-img" src="../../public/notFoundImage.jpg" alt="">
                 </div>
-                <img class="no-match-img" src="../../public/notFoundImage.jpg" alt="">
             </div>
         </div>
-    </div>
+    </section>
+
+    <SectionInfo></SectionInfo>
+
+    <section>
+        <div class="container">
+            <div class="border-arrow my-5">
+                <div class="d-flex">
+                    <span class="bg-orange-text-white px-2">
+                        CATEGORIE
+                    </span>
+                    <div class="arrow"></div>
+                </div>
+            </div>
+
+            <div class="row my-4">
+                <div class="col-3">
+                    <img class="img-style"
+                        src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/left-banner-265x363.png"
+                        alt="">
+                </div>
+                <div class="col-6">
+                    <img class="img-style"
+                        src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/category-main-banner-1105x200.png"
+                        alt="">
+                </div>
+                <div class="col-3">
+                    <img class="img-style"
+                        src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/left-banner-265x363.png"
+                        alt="">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <img class="img-style"
+                        src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/blog2-1045x733.jpg" alt="">
+                </div>
+                <div class="col-6">
+                    <img class="img-style"
+                        src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/blog6-1045x733.jpg" alt="">
+                </div>
+            </div>
+        </div>
+
+    </section>
 </template>
 
 <style lang="scss" scoped>
-.card-clickable {
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border-radius: 30px;
-}
+@use "../src/styles/partials/variable" as *;
 
-.image-background {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    text-align: center;
-    color: white;
-    height: 100px;
-    border-radius: 30px;
+.container {
+    // .card-clickable {
+    //     position: relative;
+    //     cursor: pointer;
+    //     transition: transform 0.2s, box-shadow 0.2s;
+    //     border-radius: 30px;
+    // }
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    // .image-background {
+    //     position: relative;
+    //     background-size: cover;
+    //     background-position: center;
+    //     text-align: center;
+    //     color: white;
+    //     height: 100px;
+    //     border-radius: 30px;
 
-.selected {
-    background-color: orange;
-}
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    // }
 
-.card-clickable:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
+    // .selected {
+    //     background-color: orange;
+    // }
 
-.card-clickable:hover .image-background {
-    opacity: 0.7;
-}
+    // .card-clickable:hover {
+    //     transform: scale(1.05);
+    //     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    // }
 
-.card-clickable:active {
-    transform: scale(1.03);
-}
+    // .card-clickable:hover .image-background {
+    //     opacity: 0.7;
+    // }
 
-.no-match-img {
-    width: 300px;
-    aspect-ratio: 1/1;
+    // .card-clickable:active {
+    //     transform: scale(1.03);
+    // }
+
+    .no-match-img {
+        width: 300px;
+        aspect-ratio: 1/1;
+    }
+
+    .img-style {
+        width: 100%;
+        height: 300px;
+    }
 }
 </style>
 
