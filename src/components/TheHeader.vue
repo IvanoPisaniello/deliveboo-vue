@@ -49,7 +49,7 @@ export default {
             this.retrieveCartData();
             this.updateTotalPrice();
             this.updateCartItemCount();
-        }, 500);
+        }, 100);
 
 
     },
@@ -87,22 +87,29 @@ export default {
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
             id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Offcanvas with body scrolling</h5>
-                <button class="btn btn-success btn-custom rounded-1 me-3" @click="clearCart">Pulisci Carrello</button>
+                <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Riepilogo Ordine</h5>
+                <button class="btn btn-custom rounded-1 me-3" @click="clearCart">Pulisci Carrello</button>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
                 <p>Carrello:</p>
-                <ul>
-                    <li v-for="(item, index) in store.cartDish" :key="index">
-                        {{ item.count }} - {{ item.title }} - {{ item.price }}
-                        <button class="btn btn-danger my-2" @click="removeItem(index)">
-                            X
+                <div v-for="(item, index) in store.cartDish" :key="index"
+                    class="d-flex align-items-center justify-content-between ">
+                    <div class="py-3">
+                        {{ item.count }} - {{ item.title }} - {{ item.price }}€
+                    </div>
+
+                    <div class="d-flex gap-3 ">
+                        <button @click="decrementCount(item)" class="btn cart-btn">
+                            <i class="cart-icon fa-solid fa-minus"></i>
                         </button>
-                        <button @click="decrementCount(item)" class="btn btn-danger">-</button>
-                    </li>
-                </ul>
-                <p>Totale: {{ store.totalPrice }}€</p>
+
+                        <button class="btn cart-btn" @click="removeItem(index)">
+                            <i class=" cart-icon fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <p class="my-3">Totale: {{ store.totalPrice }}.00€</p>
                 <router-link :to="{ name: 'order' }">Completa L'ordine</router-link>
             </div>
         </div>
@@ -126,14 +133,52 @@ header {
         background-color: $primary-color;
     }
 
-    .btn-custom {
+    .bg-ylw:hover {
         border-radius: 0;
+        background-color: white;
+        border-color: $primary-color ;
+
+        i {
+            color: $primary-color;
+        }
+    }
+
+    .btn {
+        border-radius: 0;
+
+    }
+
+    .btn-custom {
         background-color: $primary-color;
+        border-color: $primary-color;
+        color: white;
+
+        :hover {
+            background-color: $white-color;
+            color: $primary-color;
+            border: 1px solid;
+        }
     }
 
     i {
         font-size: larger;
     }
+
+    .cart-icon {
+
+        color: red;
+    }
+
+
+    .cart-btn:hover {
+        background-color: red;
+        border-radius: 6px;
+
+        .cart-icon {
+            color: white;
+        }
+    }
+
 
 }
 </style>
