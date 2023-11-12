@@ -68,14 +68,14 @@ export default {
                         <div>
                             <table class="table table-borderless table-sm">
                                 <tbody>
-                                    <tr v-for="(item, index) in store.cartDish" :key="index">
+                                    <tr v-for="(item, index) in store.cartDish" :key="index" class="d-flex gap-">
                                         <td class="py-2 col-md-1">
                                             <div class="number-style">
                                                 {{ item.count }}
                                             </div>
                                         </td>
-                                        <td class="col-md-3"><b>{{ item.title }}</b></td>
-                                        <td>{{ item.price }}€</td>
+                                        <td class="col-md-3 d-flex align-items-center"><b>{{ item.title }}</b></td>
+                                        <td class=" d-flex align-items-center">{{ item.price }}€</td>
                                     </tr>
                                 </tbody>
                             </table>
