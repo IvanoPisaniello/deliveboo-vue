@@ -68,7 +68,7 @@ export default {
                         <div>
                             <table class="table table-borderless table-sm">
                                 <tbody>
-                                    <tr v-for="(item, index) in store.cartDish" :key="index" class="d-flex gap-">
+                                    <tr v-for="(item, index) in store.cartDish" :key="index" class="d-flex gap-1">
                                         <td class="py-2 col-md-1">
                                             <div class="number-style">
                                                 {{ item.count }}
