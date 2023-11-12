@@ -14,6 +14,7 @@ export default {
                 address: '',
                 store
             },
+            tokenAuthorization: ''
         }
     },
     methods: {
@@ -23,13 +24,30 @@ export default {
                 {
                     headers: { 'Content-Type': 'application/json' }
                 }).then((response) => {
-                    console.log(this.sendData.store);
+                    this.tokenAuthorization = response.results
+                    this.setupBraintree()
                     console.log(response);
                 })
+        },
+        setupBraintree() {
+            //ho installato "npm install vue-braintree", "npm install braintree-web", "npm install braintree"
+            braintree.dropin.create({
+                // Step three: get client token from your server, such as via
+                //    templates or async http request
+                authorization: this.tokenAuthorization,
+                container: '#dropin-container'
+            }, (error, dropinInstance) => {
+                console.log("c'è stato un errore", error)
+
+                dropinInstance
+                // Use 'dropinInstance' here
+                // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
+            });
         }
     },
     mounted() {
         this.updateTotalPrice();
+        console.log(this.gateway)
     }
 }
 
