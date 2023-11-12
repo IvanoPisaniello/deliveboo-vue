@@ -7,6 +7,7 @@
 
 * {
     font-family: 'Didact Gothic', sans-serif;
+    color: $secondary-color;
 }
 
 h1,
@@ -17,4 +18,38 @@ h5,
 h6{
     font-family: 'Averia Serif Libre', serif;
     font-weight: 700;
+}
+
+main{
+    padding-top: 50px;
+}
+
+.bg-orange-text-white{
+    background-color: $primary-color;
+    color: $white-color;
+}
+
+.border-arrow{
+    border-bottom: 1px solid $primary-color;
+}
+
+.arrow{
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 12px solid $primary-color;
+}
+
+.bg-light-gray{
+    background-color: $section-bg;
+}
+
+.btn-black{
+    background-color: $secondary-color;
+    color: white;
+}
+
+.btn-black:hover{
+    background-color: $primary-color;
 }

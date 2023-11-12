@@ -59,7 +59,7 @@ export default {
 <template>
     <header class="d-flex justify-content-center w-100 position-fixed">
         <div class="container-fluid bg">
-            <nav class="navbar navbar-expand-lg ">
+            <!-- <nav class="navbar navbar-expand-lg ">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Navbar</a>
 
@@ -71,18 +71,39 @@ export default {
                             </li>
                         </ul>
                     </div>
-
                 </div>
-
+            </nav> -->
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Navbar</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ">
+                            <li class="nav-item " v-for="link in navLinks">
+                                <router-link class="nav-link text-white " :class="{ 'active': $route.name === link.route }"
+                                    :to="{ name: link.route }">{{ link.title }}</router-link>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
             </nav>
-
-
         </div>
+
+
+        <!-- Offcanvas Carrello -->
+        <!-- icona carrello -->
         <button class="btn bg-ylw" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
             aria-controls="offcanvasScrolling">
             <i class="fa-solid fa-cart-shopping"></i>
             <span v-if="cartItemCount > 0" class="badge bg-danger">{{ cartItemCount }}</span>
         </button>
+
+
+        <!-- pagina laterale -->
 
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
             id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -113,7 +134,6 @@ export default {
                 <router-link :to="{ name: 'order' }">Completa L'ordine</router-link>
             </div>
         </div>
-
 
     </header>
 </template>
@@ -180,5 +200,4 @@ header {
     }
 
 
-}
-</style>
+}</style>

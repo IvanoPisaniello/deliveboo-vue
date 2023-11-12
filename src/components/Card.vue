@@ -11,8 +11,8 @@ export default {
 </script>
 
 <template>
-    <div class="col-sm-6 col-md-4 col-lg-2">
-        <div class="card h-100">
+    <div class="col-sm-6 col-md-4 col-lg-2 py-4">
+        <div class="card h-100 ">
             <!-- <img src="..." class="card-img-top" alt="..."> -->
             <div class="card-body">
                 <h5 class="card-title"> {{ singleCard.name }} </h5>

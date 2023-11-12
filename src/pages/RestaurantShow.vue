@@ -53,7 +53,7 @@ export default {
         <div class="row">
             <div v-for="dish in restaurant.dishes"
                 :class="{ 'col-sm-6 col-lg-4 mb-5': dish.visible, 'd-none': !dish.visible }">
-                <div class="card">
+                <div class="card" style="height: 500px;">
                     <img :src="getImagePath(dish.image)" class="card-img-top" alt="img_dish"
                         style="height: 190px;object-fit: cover;">
                     <div class="card-body d-flex flex-column">
@@ -72,10 +72,8 @@ export default {
                             {{ dish.ingredients }}
                         </p>
                         <div class="mt-auto"> {{ dish.price }}€ </div>
-                        <div class="d-flex">
-
-                            <button @click="incrementCount(dish)" class="btn btn-primary">+</button>
-
+                        <div class="d-flex my-2">
+                            <button @click="incrementCount(dish)" class="btn bg-orange-text-white">Aggiungi al Carrello</button>
                         </div>
                     </div>
                 </div>
