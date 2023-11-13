@@ -16,19 +16,27 @@ export default {
             },
             tokenAuthorization: '',
             dropinInstance: '',
+            validazione: false
             //4111111111111111
         }
     },
     methods: {
         updateTotalPrice,
         onFormSubmit() {
+            //funzione di validazione
+            //se validazione ok allora fai comparire form carta di credito
             axios.post('http://127.0.0.1:8000/api/orders', this.sendData,
                 {
                     headers: { 'Content-Type': 'application/json' }
                 }).then((response) => {
                     console.log('il nuovo ordine è: ', response)
+                    this.validazione = true
                 })
-
+            if (validazione) {
+                this.paymentForm()
+            }
+        },
+        paymentForm() {
             axios.get('http://127.0.0.1:8000/api/orders/token', {
                 headers: {
                     "Access-Control-Allow-Origin": "*"
@@ -131,20 +139,20 @@ export default {
                                 <div><b>Totale:</b></div>
                                 <div>{{ store.totalPrice }}.00€</div>
                             </div>
-
-                            <!-- Braintree -->
-                            <div class="mt-3">
-                                <h1>Inserisci coordinate di pagamento</h1>
-                                <div id="dropin-container"></div>
-
-                                <button type="submit" @click="submitPayment()" class="btn btn-primary">Conferma
-                                    pagamento</button>
-                            </div>
-
                             <button type="submit" class="btn btn-ylw px-5 fw-bold ">Ordina</button>
                         </div>
+
+
                     </div>
                 </form>
+                <!-- Braintree -->
+                <div class="mt-3" v-if="validazione">
+                    <h1>Inserisci coordinate di pagamento</h1>
+                    <div id="dropin-container"></div>
+
+                    <button type="submit" @click="paymentForm()" class="btn btn-primary">Conferma
+                        pagamento</button>
+                </div>
             </div>
         </div>
     </div>
