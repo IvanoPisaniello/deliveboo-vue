@@ -1,4 +1,15 @@
-<script></script>
+<script>
+import { clearCart } from '../store.js';
+
+export default {
+  methods: {
+    clearCart
+  },
+  mounted() {
+    this.clearCart()
+  }
+}
+</script>
 <template>
   <main>
     <div class="container">
@@ -14,4 +25,6 @@
   </main>
 </template>
 
-<style lang="scss" scoped>@use "../src/styles/partials/variable" as *;</style>
+<style lang="scss" scoped>
+@use "../src/styles/partials/variable" as *;
+</style>

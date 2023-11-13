@@ -104,15 +104,17 @@ export default {
                 })
         },
         submitPayment() {
+            console.log(this.sendData.store.totalPrice)
             if (this.dropinInstance) {
                 const self = this;
 
                 this.dropinInstance.requestPaymentMethod(function (err, payload) {
                     axios.post('http://127.0.0.1:8000/api/orders/payment', {
-                        nonce: payload.nonce
-                    })
+                        nonce: payload.nonce,
+                        amount: self.sendData.store.totalPrice
+                    }, )
                         .then(response => {
-                            console.log("successo")
+                            console.log(response.data)
                             self.$router.push({ name: 'paymentSuccess' });
                         })
                         .catch(error => {
@@ -126,6 +128,7 @@ export default {
     mounted() {
         // this.onFormSubmit();
         this.updateTotalPrice();
+        console.log(this.sendData.store.totalPrice)
     }
 }
 
