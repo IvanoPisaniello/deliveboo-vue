@@ -29,18 +29,20 @@ export default {
         onFormSubmit() {
             //funzione di validazione
             //se validazione ok allora fai comparire form carta di credito
-            axios.post('http://127.0.0.1:8000/api/orders', this.sendData,
-                {
-                    headers: { 'Content-Type': 'application/json' }
-                }).then((response) => {
-                    console.log('il nuovo ordine è: ', response)
-                })
+
             this.validateName();
             this.validateSurname();
             this.validateMail();
             this.validateAddress();
-            if (!this.nameError && !this.surnameError && !this.mailError && !this.addressError) {
+            if (this.nameError == '' && this.surnameError == '' && this.mailError == '' && this.addressError == '') {
                 this.validazione = true
+                axios.post('http://127.0.0.1:8000/api/orders', this.sendData,
+                    {
+                        headers: { 'Content-Type': 'application/json' }
+                    }).then((response) => {
+                        console.log('il nuovo ordine è: ', response)
+                    })
+
                 this.paymentForm()
             }
         },
