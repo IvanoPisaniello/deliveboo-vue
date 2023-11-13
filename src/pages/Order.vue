@@ -16,7 +16,11 @@ export default {
             },
             tokenAuthorization: '',
             dropinInstance: '',
-            validazione: false
+            validazione: false,
+            nameError: '',
+            surnameError: '',
+            mailError: '',
+            addressError: '',
             //4111111111111111
         }
     },
@@ -30,12 +34,48 @@ export default {
                     headers: { 'Content-Type': 'application/json' }
                 }).then((response) => {
                     console.log('il nuovo ordine è: ', response)
-                    this.validazione = true
                 })
-            if (validazione) {
+            this.validateName();
+            this.validateSurname();
+            this.validateMail();
+            this.validateAddress();
+            if (!this.nameError && !this.surnameError && !this.mailError && !this.addressError) {
+                this.validazione = true
                 this.paymentForm()
             }
         },
+
+        //validazione form
+        validateName() {
+            if (!this.sendData.name) {
+                this.nameError = 'Il campo Nome è obbligatorio.';
+            } else {
+                this.nameError = '';
+            }
+        },
+        validateSurname() {
+            if (!this.sendData.surname) {
+                this.surnameError = 'Il campo Cognome è obbligatorio.';
+            } else {
+                this.surnameError = '';
+            }
+        },
+        validateMail() {
+            if (!this.sendData.mail) {
+                this.mailError = 'Il campo E-mail è obbligatorio.';
+            } else {
+                this.mailError = '';
+            }
+        },
+        validateAddress() {
+            if (!this.sendData.address) {
+                this.addressError = 'Il campo Indirizzo è obbligatorio.';
+            } else {
+                this.addressError = '';
+            }
+
+        },
+
         paymentForm() {
             axios.get('http://127.0.0.1:8000/api/orders/token', {
                 headers: {
@@ -70,7 +110,7 @@ export default {
                         nonce: payload.nonce
                     })
                         .then(response => {
-                            console.log(response)
+                            console.log("successo")
                             self.$router.push({ name: 'paymentSuccess' });
                         })
                         .catch(error => {
@@ -101,21 +141,28 @@ export default {
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome:</label>
                         <input type="text" class="form-control" placeholder="Nome" id="name" v-model="sendData.name">
+                        <div v-if="nameError" class="error-message text-danger">{{ nameError }}</div>
                     </div>
                     <div class="mb-3">
                         <label for="surname" class="form-label">Cognome:</label>
                         <input type="text" class="form-control" placeholder="Cognome" id="surname"
                             v-model="sendData.surname">
+                        <div v-if="surnameError" class="error-message text-danger">{{ surnameError }}</div>
+
                     </div>
                     <div class="mb-3">
                         <label for="mail" class="form-label">Email:</label>
                         <input type="email" class="form-control" id="mail" placeholder="name@example.com"
                             v-model="sendData.mail">
+                        <div v-if="mailError" class="error-message text-danger">{{ mailError }}</div>
+
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Indirizzo:</label>
                         <input type="text" class="form-control" placeholder="Indirizzo" id="address"
                             v-model="sendData.address">
+                        <div v-if="addressError" class="error-message text-danger">{{ addressError }}</div>
+
                     </div>
                     <div class="mb-4 pt-4">
                         <h2>Riepilogo dell'Ordine</h2>
@@ -141,8 +188,6 @@ export default {
                             </div>
                             <button type="submit" class="btn btn-ylw px-5 fw-bold ">Ordina</button>
                         </div>
-
-
                     </div>
                 </form>
                 <!-- Braintree -->
@@ -150,8 +195,7 @@ export default {
                     <h1>Inserisci coordinate di pagamento</h1>
                     <div id="dropin-container"></div>
 
-                    <button type="submit" @click="paymentForm()" class="btn btn-primary">Conferma
-                        pagamento</button>
+                    <button type="submit" @click="submitPayment()" class="btn btn-primary">Paga</button>
                 </div>
             </div>
         </div>
