@@ -86,7 +86,7 @@ export default {
                                 <router-link class="nav-link text-white " :class="{ 'active': $route.name === link.route }"
                                     :to="{ name: link.route }">{{ link.title }}</router-link>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -190,14 +190,16 @@ header {
     }
 
 
-    .cart-btn:hover {
-        background-color: red;
+    .cart-btn {
         border-radius: 6px;
 
-        .cart-icon {
-            color: white;
+        &:hover {
+            background-color: red;
+
+            .cart-icon {
+                color: white;
+            }
         }
     }
-
-
-}</style>
+}
+</style>
