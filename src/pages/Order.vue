@@ -13,12 +13,10 @@ export default {
                 mail: '',
                 address: '',
                 store,
-                tokenAuthorization: '',
-                dropinInstance: null,
-                showUI: true,
             },
-
-
+            tokenAuthorization: '',
+            dropinInstance: '',
+            //4111111111111111
         }
     },
     methods: {
@@ -28,57 +26,52 @@ export default {
                 {
                     headers: { 'Content-Type': 'application/json' }
                 }).then((response) => {
-                    this.tokenAuthorization = response.results
-
-                    if (this.clientToken !== "") {
-                        this.setupBraintree();
-                    }
-                    console.log(response);
-
-
-                }).catch((error) => {
-                    console.log(error);
+                    console.log('il nuovo ordine è: ', response)
                 })
 
-        },
-        setupBraintree() {
-            //ho installato "npm install vue-braintree", "npm install braintree-web", "npm install braintree"
-            braintree.dropin.create({
-                // Step three: get client token from your server, such as via
-                //    templates or async http request
-                authorization: this.tokenAuthorization,
-                container: '#dropin-container'
-            }, (error, instance) => {
-                if (error) {
-                    console.error("c'è stato un errore", error)
+            axios.get('http://127.0.0.1:8000/api/orders/token', {
+                headers: {
+                    "Access-Control-Allow-Origin": "*"
                 }
+            })
+                .then((response) => {
+                    this.tokenAuthorization = response.data
+                    // console.log('il token è: ', response.data)
+                    console.log('il token è: ', this.tokenAuthorization)
 
-                this.dropinInstance = instance
-                // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
-            });
+                    if (this.tokenAuthorization != '') {
+                        braintree.dropin.create({
+                            authorization: this.tokenAuthorization,
+                            container: '#dropin-container'
+                        }, (error, instance) => {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                this.dropinInstance = instance;
+                            }
+                        });
+                    }
+                })
         },
-
         submitPayment() {
             if (this.dropinInstance) {
                 const self = this;
 
                 this.dropinInstance.requestPaymentMethod(function (err, payload) {
-                    axios.post('http://127.0.0.1:8000/api/order', {
+                    axios.post('http://127.0.0.1:8000/api/orders/payment', {
                         nonce: payload.nonce
                     })
                         .then(response => {
-                            self.showUI = !self.showUI;
-                            self.$router.push({ name: 'success' });
+                            console.log(response)
+                            self.$router.push({ name: 'paymentSuccess' });
                         })
                         .catch(error => {
-                            console.log('Error');
+                            //console.log('Error');
                             // Puoi gestire l'errore qui
                         });
-
-
                 });
             }
-        },
+        }
     },
     mounted() {
         // this.onFormSubmit();
@@ -139,7 +132,7 @@ export default {
                                 <div>{{ store.totalPrice }}.00€</div>
                             </div>
 
-                            <!-- Braintree Form -->
+                            <!-- Braintree -->
                             <div class="mt-3">
                                 <h1>Inserisci coordinate di pagamento</h1>
                                 <div id="dropin-container"></div>
@@ -147,15 +140,10 @@ export default {
                                 <button type="submit" @click="submitPayment()" class="btn btn-primary">Conferma
                                     pagamento</button>
                             </div>
+
                             <button type="submit" class="btn btn-ylw px-5 fw-bold ">Ordina</button>
-
                         </div>
-
-
-
-
                     </div>
-
                 </form>
             </div>
         </div>
