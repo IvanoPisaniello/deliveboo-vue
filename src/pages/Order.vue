@@ -12,9 +12,13 @@ export default {
                 surname: '',
                 mail: '',
                 address: '',
-                store
+                store,
+                tokenAuthorization: '',
+                dropinInstance: null,
+                showUI: true,
             },
-            tokenAuthorization: ''
+
+
         }
     },
     methods: {
@@ -25,9 +29,17 @@ export default {
                     headers: { 'Content-Type': 'application/json' }
                 }).then((response) => {
                     this.tokenAuthorization = response.results
-                    this.setupBraintree()
+
+                    if (this.clientToken !== "") {
+                        this.setupBraintree();
+                    }
                     console.log(response);
+
+
+                }).catch((error) => {
+                    console.log(error);
                 })
+
         },
         setupBraintree() {
             //ho installato "npm install vue-braintree", "npm install braintree-web", "npm install braintree"
@@ -36,18 +48,41 @@ export default {
                 //    templates or async http request
                 authorization: this.tokenAuthorization,
                 container: '#dropin-container'
-            }, (error, dropinInstance) => {
-                console.log("c'è stato un errore", error)
+            }, (error, instance) => {
+                if (error) {
+                    console.error("c'è stato un errore", error)
+                }
 
-                dropinInstance
-                // Use 'dropinInstance' here
+                this.dropinInstance = instance
                 // Methods documented at https://braintree.github.io/braintree-web-drop-in/docs/current/Dropin.html
             });
-        }
+        },
+
+        submitPayment() {
+            if (this.dropinInstance) {
+                const self = this;
+
+                this.dropinInstance.requestPaymentMethod(function (err, payload) {
+                    axios.post('http://127.0.0.1:8000/api/order', {
+                        nonce: payload.nonce
+                    })
+                        .then(response => {
+                            self.showUI = !self.showUI;
+                            self.$router.push({ name: 'success' });
+                        })
+                        .catch(error => {
+                            console.log('Error');
+                            // Puoi gestire l'errore qui
+                        });
+
+
+                });
+            }
+        },
     },
     mounted() {
+        // this.onFormSubmit();
         this.updateTotalPrice();
-        console.log(this.gateway)
     }
 }
 
@@ -103,8 +138,21 @@ export default {
                                 <div><b>Totale:</b></div>
                                 <div>{{ store.totalPrice }}.00€</div>
                             </div>
+
+                            <!-- Braintree Form -->
+                            <div class="mt-3">
+                                <h1>Inserisci coordinate di pagamento</h1>
+                                <div id="dropin-container"></div>
+
+                                <button type="submit" @click="submitPayment()" class="btn btn-primary">Conferma
+                                    pagamento</button>
+                            </div>
                             <button type="submit" class="btn btn-ylw px-5 fw-bold ">Ordina</button>
+
                         </div>
+
+
+
 
                     </div>
 
