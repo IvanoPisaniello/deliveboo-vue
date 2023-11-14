@@ -1,6 +1,6 @@
 <script>
 import axios from 'axios';
-import { store, incrementCount, } from '../store'
+import { store, incrementCount, calculateFinalPrice } from '../store'
 
 
 export default {
@@ -24,6 +24,9 @@ export default {
             return `http://127.0.0.1:8000/storage/${image}`;
         },
         incrementCount,
+        calculateFinalPrice,
+
+
 
     },
     mounted() {
@@ -71,7 +74,14 @@ export default {
                         <p class="card-text fst-italic">
                             {{ dish.ingredients }}
                         </p>
-                        <div class="mt-auto"> {{ dish.price }}€ </div>
+                        <div class="mt-auto">
+                            <div v-if="dish.discount != null && dish.discount > 0" class="text-decoration-line-through">
+                                {{ calculateFinalPrice(dish).originalPrice }}€
+                            </div>
+                            <div class="fw-bold">
+                                {{ calculateFinalPrice(dish).finalPrice }}€
+                            </div>
+                        </div>
                         <div class="d-flex my-2">
                             <button @click="incrementCount(dish)" class="btn bg-orange-text-white">Aggiungi al
                                 Carrello</button>
