@@ -10,9 +10,10 @@ export default {
             sendData: {
                 name: '',
                 surname: '',
-                mail: '',
+                email: '',
                 address: '',
                 store,
+
             },
             tokenAuthorization: '',
             dropinInstance: '',
@@ -41,6 +42,7 @@ export default {
                         headers: { 'Content-Type': 'application/json' }
                     }).then((response) => {
                         console.log('il nuovo ordine è: ', response)
+
                     })
 
                 this.paymentForm()
@@ -63,7 +65,7 @@ export default {
             }
         },
         validateMail() {
-            if (!this.sendData.mail) {
+            if (!this.sendData.email) {
                 this.mailError = 'Il campo E-mail è obbligatorio.';
             } else {
                 this.mailError = '';
@@ -112,7 +114,7 @@ export default {
                     axios.post('http://127.0.0.1:8000/api/orders/payment', {
                         nonce: payload.nonce,
                         amount: self.sendData.store.totalPrice
-                    }, )
+                    },)
                         .then(response => {
                             console.log(response.data)
                             self.$router.push({ name: 'paymentSuccess' });
@@ -156,9 +158,9 @@ export default {
 
                     </div>
                     <div class="mb-3">
-                        <label for="mail" class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="mail" placeholder="name@example.com"
-                            v-model="sendData.mail">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com"
+                            v-model="sendData.email">
                         <div v-if="mailError" class="error-message text-danger">{{ mailError }}</div>
 
                     </div>
