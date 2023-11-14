@@ -60,20 +60,6 @@ export default {
 <template>
     <header class="d-flex justify-content-center w-100 position-fixed">
         <div class="container-fluid bg">
-            <!-- <nav class="navbar navbar-expand-lg ">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Navbar</a>
-
-                    <div class="collapse navbar-collapse" id="navbarsExample02">
-                        <ul class="navbar-nav me-auto mb-2 mb-sm-0 align-items-center">
-                            <li class="nav-item" v-for="link in navLinks">
-                                <router-link class="nav-link text-white" :class="{ 'active': $route.name === link.route }"
-                                    :to="{ name: link.route }">{{ link.title }}</router-link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav> -->
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
                     <div class="col-3 col-md-1">
@@ -152,6 +138,7 @@ export default {
 
 header {
 
+    overflow: hidden;
     z-index: 100;
 
     .bg {
