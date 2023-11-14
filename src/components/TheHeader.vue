@@ -131,7 +131,10 @@ export default {
                     </div>
                 </div>
                 <p class="my-3">Totale: {{ store.totalPrice }}.00€</p>
-                <router-link :to="{ name: 'order' }">Completa L'ordine</router-link>
+                <button type="button" class="btn border-0" data-bs-dismiss="offcanvas" aria-label="Close">
+                    <router-link :to="{ name: 'order' }">Completa L'ordine</router-link>
+                </button>
+
             </div>
         </div>
 
