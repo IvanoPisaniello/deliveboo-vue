@@ -1,7 +1,7 @@
 <script>
 
 import axios from "axios";
-import { store, clearCart, removeItem, decrementCount, updateTotalPrice, updateCartItemCount } from '../store'
+import { store, clearCart, removeItem, decrementCount, updateTotalPrice, updateCartItemCount, incrementCount } from '../store'
 
 export default {
     data() {
@@ -37,6 +37,7 @@ export default {
         decrementCount,
         updateTotalPrice,
         updateCartItemCount,
+        incrementCount,
 
 
 
@@ -125,6 +126,9 @@ export default {
                     <div class="d-flex gap-3 ">
                         <button @click="decrementCount(item)" class="btn cart-btn">
                             <i class="cart-icon fa-solid fa-minus"></i>
+                        </button>
+                        <button @click="incrementCount(item)" class="btn cart-btn">
+                            <i class="cart-icon fa-solid fa-plus"></i>
                         </button>
 
                         <button class="btn cart-btn" @click="removeItem(index)">
