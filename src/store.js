@@ -9,10 +9,10 @@ export const store = reactive({
 export function calculateFinalPrice(dish) {
   if (dish.discount != null && dish.discount > 0) {
     // Calcola il prezzo con lo sconto
-    const discountedPrice = dish.price - (dish.price * dish.discount) / 100;
+    let discountedPrice = dish.price - (dish.price * dish.discount) / 100;
     return {
       originalPrice: dish.price,
-      finalPrice: discountedPrice,
+      finalPrice: discountedPrice.toFixed(2),
     };
   } else {
     // Non c'è sconto, restituisci il prezzo originale

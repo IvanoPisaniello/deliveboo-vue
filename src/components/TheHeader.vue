@@ -136,7 +136,7 @@ export default {
                         </button>
                     </div>
                 </div>
-                <p class="my-3">Totale: {{ store.totalPrice }}.00€</p>
+                <p class="my-3">Totale: {{ store.totalPrice.toFixed(2) }}€</p>
                 <button type="button" class="btn border-0" data-bs-dismiss="offcanvas" aria-label="Close">
                     <router-link :to="{ name: 'order' }">Completa L'ordine</router-link>
                 </button>
