@@ -5,6 +5,7 @@ import Contacts from "./pages/Contacts.vue";
 import AboutUs from "./pages/AboutUs.vue";
 import RestaurantShow from "./pages/RestaurantShow.vue";
 import Order from "./pages/Order.vue";
+import PaymentSuccess from "./pages/PaymentSuccess.vue";
 
 
 const routes = [
@@ -32,6 +33,11 @@ const routes = [
         path: "/order",
         name: "order",
         component: Order,
+    },
+    {
+        path: "/paymentSuccess",
+        name: "paymentSuccess",
+        component: PaymentSuccess,
     },
 
 ];
