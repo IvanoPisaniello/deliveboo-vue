@@ -213,7 +213,6 @@ export default {
 @use "../src/styles/partials/variable" as *;
 
 .container {
-    padding-top: 100px;
 
     li {
         list-style: none;
