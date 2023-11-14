@@ -162,80 +162,8 @@ export default {
     </section>
 
     <SectionInfo></SectionInfo>
-
-    <div class="container my-4">
-        <div class="row">
-            <!-- Pizza -->
-            <div class="col-2 ">
-                <div class="card card-clickable">
-                    <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Pizza' } }"
-                        class="text-decoration-none">
-                        <div class="image-background" style="background-image: url('../../public/pizza.jpeg')">
-                            <h5 class="card-title text-center">Pizza</h5>
-                        </div>
-                    </router-link>
-                </div>
-            </div>
-            <!-- Sushi -->
-            <div class="col-2 ">
-                <div class="card card-clickable">
-                    <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Sushi' } }"
-                        class="text-decoration-none">
-                        <div class="image-background" style="background-image: url('../../public/sushi.jpeg')">
-                            <h5 class="card-title text-center">Sushi</h5>
-                        </div>
-                    </router-link>
-                </div>
-            </div>
-            <!-- Hamburger -->
-            <div class="col-2 ">
-                <div class="card card-clickable">
-                    <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Hamburger' } }"
-                        class="text-decoration-none">
-                        <div class="image-background" style="background-image: url('../../public/hamburger.jpeg')">
-                            <h5 class="card-title text-center">Hamburger</h5>
-                        </div>
-                    </router-link>
-                </div>
-            </div>
-            <!-- Poke -->
-            <div class="col-2 ">
-                <div class="card card-clickable">
-                    <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Poke' } }"
-                        class="text-decoration-none">
-                        <div class="image-background" style="background-image: url('../../public/poke.avif')">
-                            <h5 class="card-title text-center">Poke</h5>
-                        </div>
-                    </router-link>
-                </div>
-            </div>
-            <!-- Cinese -->
-            <div class="col-2 ">
-                <div class="card card-clickable">
-                    <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Cinese' } }"
-                        class="text-decoration-none">
-                        <div class="image-background" style="background-image: url('../../public/cinese.jpeg')">
-                            <h5 class="card-title text-center">Cinese</h5>
-                        </div>
-                    </router-link>
-                </div>
-            </div>
-            <!-- Indiano -->
-            <div class="col-2 ">
-                <div class="card card-clickable">
-                    <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Indiano' } }"
-                        class="text-decoration-none">
-                        <div class="image-background" style="background-image: url('../../public/indiano.jpeg')">
-                            <h5 class="card-title text-center">Indiano</h5>
-                        </div>
-                    </router-link>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <section>
-        <div class="container">
+    <section class="py-5">
+        <div class="container my-4">
             <div class="border-arrow my-5">
                 <div class="d-flex">
                     <span class="bg-orange-text-white px-2">
@@ -244,33 +172,114 @@ export default {
                     <div class="arrow"></div>
                 </div>
             </div>
+            <div class="row g-3">
+                <!-- Pizza -->
+                <div class="col-sm-6 col-md-4 col-lg-2">
+                    <div class="card card-clickable">
+                        <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Pizza' } }"
+                            class="text-decoration-none">
+                            <div class="image-background" style="background-image: url('../../public/pizza.jpeg')">
+                                <h5 class="card-title text-center">Pizza</h5>
+                            </div>
+                        </router-link>
+                    </div>
+                </div>
+                <!-- Sushi -->
+                <div class="col-sm-6 col-md-4 col-lg-2 ">
+                    <div class="card card-clickable">
+                        <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Sushi' } }"
+                            class="text-decoration-none">
+                            <div class="image-background" style="background-image: url('../../public/sushi.jpeg')">
+                                <h5 class="card-title text-center">Sushi</h5>
+                            </div>
+                        </router-link>
+                    </div>
+                </div>
+                <!-- Hamburger -->
+                <div class="col-sm-6 col-md-4 col-lg-2 ">
+                    <div class="card card-clickable">
+                        <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Hamburger' } }"
+                            class="text-decoration-none">
+                            <div class="image-background" style="background-image: url('../../public/hamburger.jpeg')">
+                                <h5 class="card-title text-center">Hamburger</h5>
+                            </div>
+                        </router-link>
+                    </div>
+                </div>
+                <!-- Poke -->
+                <div class="col-sm-6 col-md-4 col-lg-2 ">
+                    <div class="card card-clickable">
+                        <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Poke' } }"
+                            class="text-decoration-none">
+                            <div class="image-background" style="background-image: url('../../public/poke.avif')">
+                                <h5 class="card-title text-center">Poke</h5>
+                            </div>
+                        </router-link>
+                    </div>
+                </div>
+                <!-- Cinese -->
+                <div class="col-sm-6 col-md-4 col-lg-2 ">
+                    <div class="card card-clickable">
+                        <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Cinese' } }"
+                            class="text-decoration-none">
+                            <div class="image-background" style="background-image: url('../../public/cinese.jpeg')">
+                                <h5 class="card-title text-center">Cinese</h5>
+                            </div>
+                        </router-link>
+                    </div>
+                </div>
+                <!-- Indiano -->
+                <div class="col-sm-6 col-md-4 col-lg-2 ">
+                    <div class="card card-clickable">
+                        <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Indiano' } }"
+                            class="text-decoration-none">
+                            <div class="image-background" style="background-image: url('../../public/indiano.jpeg')">
+                                <h5 class="card-title text-center">Indiano</h5>
+                            </div>
+                        </router-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="row my-4">
-                <div class="col-3">
+    <section class="pt-3">
+        <div class="container">
+            <div class="border-arrow my-5">
+                <div class="d-flex">
+                    <span class="bg-orange-text-white px-2">
+                        VEDI TUTTO
+                    </span>
+                    <div class="arrow"></div>
+                </div>
+            </div>
+
+            <div class="row my-4 g-2">
+                <div class="col-sm-12 col-md-3">
                     <img class="img-style"
-                        src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/left-banner-265x363.png"
+                        src="../../public/img-destra.jpg"
                         alt="">
                 </div>
-                <div class="col-6">
+                <div class="col-sm-12 col-md-6">
                     <img class="img-style"
-                        src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/category-main-banner-1105x200.png"
+                        src="../../public/foto-centrale.jpg"
                         alt="">
                 </div>
-                <div class="col-3">
+                <div class="col-sm-12 col-md-3">
                     <img class="img-style"
-                        src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/left-banner-265x363.png"
+                        src="../../public/img-sinistra.jpg"
                         alt="">
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-6">
+            <div class="row g-2">
+                <div class="col-sm-12 col-md-6">
                     <img class="img-style"
-                        src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/blog2-1045x733.jpg" alt="">
+                        src="../../public/basso-1.jpg" alt="">
                 </div>
-                <div class="col-6">
+                <div class="col-sm-12 col-md-6">
                     <img class="img-style"
-                        src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/blog6-1045x733.jpg" alt="">
+                        src="../../public/ultima.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -329,6 +338,7 @@ export default {
     .img-style {
         width: 100%;
         height: 300px;
+        object-fit: cover;
     }
 }
 </style>

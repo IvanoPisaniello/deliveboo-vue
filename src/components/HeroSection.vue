@@ -18,15 +18,15 @@ export default {
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/Mainbanner3-1903x950.jpg"
+                <img src="../../public/slider-1.jpg"
+                    class="d-block w-100" alt="">
+            </div>
+            <div class="carousel-item">
+                <img src="../../public/slider-2.jpg"
                     class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/Mainbanner1-1903x950.jpg"
-                    class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-                <img src="https://templates-demo.in/opencart/tostitos/image/cache/catalog/Mainbanner2-1903x950.jpg"
+                <img src="../../public/slider-3.jpg"
                     class="d-block w-100" alt="...">
             </div>
         </div>
