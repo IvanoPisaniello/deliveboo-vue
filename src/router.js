@@ -6,6 +6,7 @@ import AboutUs from "./pages/AboutUs.vue";
 import RestaurantShow from "./pages/RestaurantShow.vue";
 import Order from "./pages/Order.vue";
 import PaymentSuccess from "./pages/PaymentSuccess.vue";
+import FilteredRestaurants from "./pages/FilteredRestaurants.vue";
 
 
 const routes = [
@@ -39,6 +40,11 @@ const routes = [
         name: "paymentSuccess",
         component: PaymentSuccess,
     },
+    {
+        path: "/restaurantsFiltered/:type",
+        name: "filteredRestaurants",
+        component: FilteredRestaurants,
+    }
 
 ];
 
