@@ -6,6 +6,22 @@ export const store = reactive({
   totalPrice: 0,
   cartItemCount: 0,
 })
+export function calculateFinalPrice(dish) {
+  if (dish.discount != null && dish.discount > 0) {
+    // Calcola il prezzo con lo sconto
+    const discountedPrice = dish.price - (dish.price * dish.discount) / 100;
+    return {
+      originalPrice: dish.price,
+      finalPrice: discountedPrice,
+    };
+  } else {
+    // Non c'è sconto, restituisci il prezzo originale
+    return {
+      originalPrice: dish.price,
+      finalPrice: dish.price,
+    };
+  }
+}
 
 export function incrementCount(dish) {
   const dishInCart = store.cartDish.find(item => item.id === dish.id);
@@ -14,17 +30,17 @@ export function incrementCount(dish) {
     alert('Non puoi aggiungere piatti da ristoranti diversi allo stesso carrello.');
     return;
   }
-
+  const finalPrice = calculateFinalPrice(dish).finalPrice;
   if (!dishInCart) {
-    store.cartDish.push({ id: dish.id, count: 1, restaurant_id: dish.restaurant_id, title: dish.title, price: dish.price });
+    store.cartDish.push({ id: dish.id, count: 1, restaurant_id: dish.restaurant_id, title: dish.title, price: finalPrice });
     store.counts[dish.id] = 1;
   } else {
-      dishInCart.count++;
-      store.counts[dish.id]++;
-    } 
-    console.log(store.cartDish)
-    saveCartToLocalStorage();
+    dishInCart.count++;
+    store.counts[dish.id]++;
   }
+  console.log(store.cartDish)
+  saveCartToLocalStorage();
+}
 
 
 export function updateCartItemCount() {
