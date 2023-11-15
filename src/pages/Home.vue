@@ -3,7 +3,7 @@ import axios from "axios";
 
 import Card from '../components/Card.vue';
 import SectionInfo from "../components/SectionInfo.vue";
-import HeroSection from "../components/HeroSection.vue"
+import HeroSection from "../components/HeroSection.vue";
 
 
 export default {
@@ -54,15 +54,7 @@ export default {
                     this.loading = false;
                 });
         },
-        // filterRestaurants(type) {
-        //     this.search.type = type;
 
-        //     axios.get('http://127.0.0.1:8000/api/restaurants', { params: this.search })
-        //         .then((response) => {
-        //             this.restaurants = response.data.results;
-        //             console.log(this.restaurants)
-        //         })
-        // },
         filterByCheckbox() {
             this.loading = true;
             // Esegui la richiesta axios con i tipi selezionati
