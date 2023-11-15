@@ -191,7 +191,7 @@ export default {
                         <div class="d-flex gap-5 align-items-center">
                             <div class="py-4 font-size d-flex align-items-center gap-1">
                                 <div><b>Totale:</b></div>
-                                <div>{{ store.totalPrice }}.00€</div>
+                                <div>{{ store.totalPrice.toFixed(2) }}€</div>
                             </div>
                             <button type="submit" class="btn btn-ylw px-5 fw-bold ">Ordina</button>
                         </div>
