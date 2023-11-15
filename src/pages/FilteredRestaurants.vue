@@ -168,9 +168,7 @@ export default {
   min-height: 550px;
 }
 
-.loader-container {
-  height: 100px;
-}
+
 
 .custom-animation-moto {
   position: relative;

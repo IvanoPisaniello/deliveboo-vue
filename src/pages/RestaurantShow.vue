@@ -53,7 +53,7 @@ export default {
 <template>
     <div class="container">
 
-        <div class="loader-container pt-5">
+        <div class="loader-container">
             <svg v-if="loading" class="custom-animation-moto" xmlns="http://www.w3.org/2000/svg" width="95" height="83"
                 viewBox="0 0 95 83">
                 <g fill="none" fill-rule="evenodd">
@@ -218,9 +218,7 @@ export default {
     min-height: 750px;
 }
 
-.loader-container {
-    height: 100px;
-}
+
 
 .custom-animation-moto {
     position: relative;
