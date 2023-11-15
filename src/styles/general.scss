@@ -15,25 +15,25 @@ h2,
 h3,
 h4,
 h5,
-h6{
+h6 {
     font-family: 'Averia Serif Libre', serif;
     font-weight: 700;
 }
 
-main{
+main {
     padding-top: 80px;
 }
 
-.bg-orange-text-white{
+.bg-orange-text-white {
     background-color: $primary-color;
     color: $white-color;
 }
 
-.border-arrow{
+.border-arrow {
     border-bottom: 1px solid $primary-color;
 }
 
-.arrow{
+.arrow {
     width: 0;
     height: 0;
     border-top: 12px solid transparent;
@@ -41,15 +41,15 @@ main{
     border-left: 12px solid $primary-color;
 }
 
-.bg-light-gray{
+.bg-light-gray {
     background-color: $section-bg;
 }
 
-.btn-black{
+.btn-black {
     background-color: $secondary-color;
     color: white;
 }
 
-.btn-black:hover{
+.btn-black:hover {
     background-color: $primary-color;
 }
