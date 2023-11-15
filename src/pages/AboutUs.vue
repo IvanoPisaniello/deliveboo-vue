@@ -7,7 +7,7 @@ export default {
 
 
 <template>
-    <div class="container">
+    <div class="container my-5">
         <div class="row">
             <div class="col-sm-12 col-md-6 d-flex align-items-center justify-content-center">
                 <div class="width mb-4">

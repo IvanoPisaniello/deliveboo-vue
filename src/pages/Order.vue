@@ -189,7 +189,7 @@ export default {
                             </table>
                         </div>
                         <div class="d-flex gap-5 align-items-center">
-                            <div class="py-4 font-size d-flex align-items-center gap-1">
+                            <div class="py-4 font-size flex-wrap d-flex align-items-center gap-1">
                                 <div><b>Totale:</b></div>
                                 <div>{{ store.totalPrice.toFixed(2) }}€</div>
                             </div>
