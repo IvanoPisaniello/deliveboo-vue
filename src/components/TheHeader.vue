@@ -85,10 +85,11 @@ export default {
 
         <!-- Offcanvas Carrello -->
         <!-- icona carrello -->
-        <button class="btn bg-ylw" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling"
-            aria-controls="offcanvasScrolling">
+        <button class="btn bg-ylw position-relative" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
             <i class="fa-solid fa-cart-shopping"></i>
-            <span v-if="cartItemCount > 0" class="badge bg-danger">{{ cartItemCount }}</span>
+            <span v-if="cartItemCount > 0" class="cart-badge badge bg-danger rounded-circle">{{
+                cartItemCount }}</span>
         </button>
 
 
@@ -195,10 +196,15 @@ header {
     }
 
     .cart-icon {
-
         color: red;
     }
 
+    .cart-badge {
+        right: 5%;
+        top: 8%;
+        font-size: .65rem;
+        position: absolute;
+    }
 
     .cart-btn {
         border-radius: 6px;
