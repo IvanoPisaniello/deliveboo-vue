@@ -16,7 +16,7 @@ export default {
       <div class="text-center">
         <h1 class="">Il pagamento è stato effettuato con successo</h1>
         <div class="col">
-          <img
+          <img class="w-100"
             src="https://img.freepik.com/premium-vector/people-paying-successfully-with-phone-online-mobile-payment-banking-service_530733-2928.jpg"
             alt="">
         </div>

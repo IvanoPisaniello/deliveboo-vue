@@ -468,8 +468,6 @@ export default {
     }
 }
 
-.loader-container {}
-
 .custom-animation-moto {
     position: relative;
     width: 20rem;
