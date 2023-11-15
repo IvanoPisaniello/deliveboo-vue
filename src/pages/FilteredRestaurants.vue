@@ -33,9 +33,10 @@ export default {
       }
     }
   },
+
   mounted() {
     this.search.type = this.$route.params.type;
-
+    window.scrollTo(0, this.$el.offsetTop);
     this.filterRestaurants();
   }
 }
