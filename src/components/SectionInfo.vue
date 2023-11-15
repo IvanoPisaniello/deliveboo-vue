@@ -4,7 +4,6 @@
 
 
 <template>
-    
     <!-- sezione informazioni -->
 
     <section class="bg-light-gray py-4">
@@ -16,7 +15,11 @@
                             <h2 class="text-orange size">tutto cio che vuoi</h2>
                         </h2>
 
-                        <button class="my-4 px-5 py-2 fw-bold btn-black">Scopri tutti i locali</button>
+                        <a href="#locali" style="text-decoration: none; color: white;">
+                            <button id="scopriLocaliBtn" class="my-4 px-5 py-2 fw-bold btn-black">
+                                Scopri tutti i locali
+                            </button>
+                        </a>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 bg-orange-text-white px-4 rounded-5">
@@ -59,7 +62,7 @@
 @use "../src/styles/partials/variable" as *;
 
 .container {
-    
+
 
     .text-orange {
         color: $primary-color;

@@ -140,7 +140,12 @@ export default {
                     Indiano
                 </label>
             </div>
-            <button @click="filterByCheckbox()" class="btn btn-primary my-3">Cerca</button>
+            <!-- button -->
+            <div class="d-flex justify-content-center" id="locali">
+                <button @click="filterByCheckbox()" class="btn btn-primary btn-sm my-3 rounded-pill custom-btn"
+                    style="width: auto; max-width: 150px;">Cerca</button>
+            </div>
+            <!-- loader -->
             <div v-if="loading" class="loader-container mb-5">
                 <svg v-if="loading" class="custom-animation-moto" xmlns="http://www.w3.org/2000/svg" width="35" height="23"
                     viewBox="0 0 95 83">
@@ -391,6 +396,16 @@ export default {
 
 <style lang="scss" scoped>
 @use "../src/styles/partials/variable" as *;
+
+.custom-btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: orange;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid orange;
+
+}
 
 .container {
     .card-clickable {
