@@ -67,7 +67,7 @@ export default {
                     </div>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav ">
@@ -157,6 +157,20 @@ header {
         i {
             color: $primary-color;
         }
+    }
+
+    .navbar-toggler {
+        border: 1px solid white;
+    }
+
+    .fa-bars {
+        width: 1.5em;
+        height: 1.5em;
+        background-size: 100%;
+        color: #8d8b8b;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .btn {
