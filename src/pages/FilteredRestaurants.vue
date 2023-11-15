@@ -163,6 +163,10 @@ export default {
 </template>
 
 <style scoped lang="scss">
+.container {
+  min-height: 550px;
+}
+
 .loader-container {
   height: 100px;
 }
