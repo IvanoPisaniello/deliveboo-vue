@@ -348,7 +348,7 @@ export default {
                     <div class="card card-clickable">
                         <router-link :to="{ name: 'filteredRestaurants', params: { type: 'Indiano' } }"
                             class="text-decoration-none">
-                            <div class="image-background" style="background-image: url('../../public/indiano.jpeg')">
+                            <div class="image-background" style="background-image: url('../../public/indianobuono.jpg')">
                                 <h5 class="card-title text-center">Indiano</h5>
                             </div>
                         </router-link>
@@ -370,23 +370,23 @@ export default {
             </div>
 
             <div class="row my-4 g-2">
-                <div class="col-sm-12 col-md-3">
-                    <img class="img-style" src="../../public/img-destra.jpg" alt="">
+                <div class="col-sm-12 col-md-3 position-relative overflow-hidden">
+                    <img class="img-style img-transform" src="../../public/img-destra.jpg" alt="">
                 </div>
-                <div class="col-sm-12 col-md-6">
-                    <img class="img-style" src="../../public/foto-centrale.jpg" alt="">
+                <div class="col-sm-12 col-md-6 position-relative overflow-hidden">
+                    <img class="img-style img-transform" src="../../public/foto-centrale.jpg" alt="">
                 </div>
-                <div class="col-sm-12 col-md-3">
-                    <img class="img-style" src="../../public/img-sinistra.jpg" alt="">
+                <div class="col-sm-12 col-md-3 position-relative overflow-hidden">
+                    <img class="img-style img-transform" src="../../public/img-sinistra.jpg" alt="">
                 </div>
             </div>
 
             <div class="row g-2">
-                <div class="col-sm-12 col-md-6">
-                    <img class="img-style" src="../../public/basso-1.jpg" alt="">
+                <div class="col-sm-12 col-md-6 position-relative overflow-hidden">
+                    <img class="img-style img-transform" src="../../public/basso-1.jpg" alt="">
                 </div>
-                <div class="col-sm-12 col-md-6">
-                    <img class="img-style" src="../../public/ultima.jpg" alt="">
+                <div class="col-sm-12 col-md-6 position-relative overflow-hidden">
+                    <img class="img-style img-transform" src="../../public/ultima.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -396,6 +396,8 @@ export default {
 
 <style lang="scss" scoped>
 @use "../src/styles/partials/variable" as *;
+
+
 
 .custom-btn {
     padding: 5px 10px;
@@ -408,6 +410,11 @@ export default {
 }
 
 .container {
+    .img-transform:hover {
+        transform: scale(1.03);
+        cursor: pointer;
+    }
+
     .card-clickable {
         position: relative;
         cursor: pointer;
@@ -423,10 +430,12 @@ export default {
         color: white;
         height: 100px;
         border-radius: 30px;
-
+        background-color: rgba(42, 44, 49, 0.6);
+        background-blend-mode: overlay;
         display: flex;
         justify-content: center;
         align-items: center;
+
     }
 
 
