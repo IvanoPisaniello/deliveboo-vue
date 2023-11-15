@@ -108,7 +108,7 @@ export default {
 
         <!-- pagina laterale -->
 
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
             id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Riepilogo Ordine</h5>
