@@ -146,26 +146,26 @@ export default {
             <div class="col-10 ">
                 <form action="" @submit.prevent="onFormSubmit">
                     <div class="mb-3">
-                        <label for="name" class="form-label">Nome:</label>
+                        <label for="name" class="form-label">Nome *</label>
                         <input type="text" class="form-control" placeholder="Nome" id="name" v-model="sendData.name">
                         <div v-if="nameError" class="error-message text-danger">{{ nameError }}</div>
                     </div>
                     <div class="mb-3">
-                        <label for="surname" class="form-label">Cognome:</label>
+                        <label for="surname" class="form-label">Cognome *</label>
                         <input type="text" class="form-control" placeholder="Cognome" id="surname"
                             v-model="sendData.surname">
                         <div v-if="surnameError" class="error-message text-danger">{{ surnameError }}</div>
 
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email:</label>
+                        <label for="email" class="form-label">Email *</label>
                         <input type="email" class="form-control" id="email" placeholder="name@example.com"
                             v-model="sendData.email">
                         <div v-if="mailError" class="error-message text-danger">{{ mailError }}</div>
 
                     </div>
                     <div class="mb-3">
-                        <label for="address" class="form-label">Indirizzo:</label>
+                        <label for="address" class="form-label">Indirizzo *</label>
                         <input type="text" class="form-control" placeholder="Indirizzo" id="address"
                             v-model="sendData.address">
                         <div v-if="addressError" class="error-message text-danger">{{ addressError }}</div>
